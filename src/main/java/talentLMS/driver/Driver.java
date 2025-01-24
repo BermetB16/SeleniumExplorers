@@ -1,6 +1,6 @@
-package demoqa.driver;
+package talentLMS.driver;
 
-import demoqa.fileUtils.ConfigReader;
+import talentLMS.fileUtils.ConfigReader;
 import org.openqa.selenium.WebDriver;
 
 public class Driver {

@@ -1,6 +1,6 @@
-package demoqa.helper;
+package talentLMS.helper;
 
-import demoqa.driver.Driver;
+import talentLMS.driver.Driver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;

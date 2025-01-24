@@ -1,4 +1,4 @@
-package demoqa.driver;
+package talentLMS.driver;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;

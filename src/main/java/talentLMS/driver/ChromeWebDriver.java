@@ -1,19 +1,20 @@
-package demoqa.driver;
+package talentLMS.driver;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.time.Duration;
 
-public class EdgeWebDriver {
+public class ChromeWebDriver {
     public WebDriver driver;
 
     public static WebDriver loadFromDriver(){
-        WebDriverManager.edgedriver().setup();
-        WebDriver driver = new EdgeDriver();
+        WebDriverManager.chromedriver().setup();
+        WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
         return driver;
+
     }
 }

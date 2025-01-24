@@ -1,4 +1,4 @@
-package demoqa.entity;
+package talentLMS.entity;
 
 import lombok.*;
 

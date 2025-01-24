@@ -1,10 +1,9 @@
-import com.beust.ah.A;
-import demoqa.driver.Driver;
-import demoqa.helper.WebElementActions;
-import demoqa.page.dashboard.DashboardPage;
-import demoqa.page.login.LoginPage;
-import demoqa.page.users.AddUserPage;
-import demoqa.utils.randomEntityUtils.RandomUserGenerator;
+import talentLMS.driver.Driver;
+import talentLMS.helper.WebElementActions;
+import talentLMS.page.dashboard.DashboardPage;
+import talentLMS.page.login.LoginPage;
+import talentLMS.page.users.AddUserPage;
+import talentLMS.utils.randomEntityUtils.RandomUserGenerator;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.BeforeSuite;
 

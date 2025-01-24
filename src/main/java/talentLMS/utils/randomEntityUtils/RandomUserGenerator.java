@@ -1,7 +1,7 @@
-package demoqa.utils.randomEntityUtils;
+package talentLMS.utils.randomEntityUtils;
 
 import com.github.javafaker.Faker;
-import demoqa.entity.User;
+import talentLMS.entity.User;
 
 public class RandomUserGenerator {
 
