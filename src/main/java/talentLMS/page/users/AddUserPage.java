@@ -1,27 +1,85 @@
 package talentLMS.page.users;
 
+import com.github.javafaker.Faker;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import talentLMS.driver.Driver;
+import talentLMS.entity.User;
 import talentLMS.page.BasePage;
+import talentLMS.page.dashboard.DashboardPage;
+
+import java.time.Duration;
+import java.util.Random;
 
 public class AddUserPage extends BasePage {
-    @FindBy(name = "name")
+    @FindBy(xpath = "//input[@name = 'name']")
     public WebElement firstName;
-
-    @FindBy(name = "surname")
+    @FindBy(xpath = "//input[@name = 'surname']")
     public WebElement lastName;
-
-    @FindBy(name = "email")
-    public WebElement emailAddress;
-
-    @FindBy(name = "password")
+    @FindBy(xpath = "//input[@name = 'email']")
+    public WebElement email;
+    @FindBy(xpath = "//input[@name='login']")
+    public WebElement username;
+    @FindBy(xpath = "//input[@name = 'password']")
     public WebElement password;
+    @FindBy(xpath = "//input[@name ='submit_personal_details']")
+    public WebElement addUserButton;
 
-    @FindBy(name = "login")
-    public WebElement login;
+    public AddUserPage addNewUser(User user) {
+        webElementActions.sendKeys(firstName, user.getFirstName())
+                .sendKeys(lastName, user.getLastName())
+                .sendKeys(email, user.getEmail())
+                .sendKeys(username, user.getUserName())
+                .sendKeys(password, AddUserPage.generateStrongPassword(30))
+                .click(addUserButton);
+        return this;
+    }
 
-    @FindBy(name = "submit_personal_details")
-    public WebElement addUserBtn;
+        public static String generateStrongPassword(int length) {
+            if (length < 8) {
+                throw new IllegalArgumentException("Пароль должен быть не менее 8 символов");
+            }
+
+            Faker faker = new Faker();
+            Random random = new Random();
+
+            // Генерируем обязательные символы
+            char upperCase = (char) ('A' + random.nextInt(26)); // Заглавная буква
+            char lowerCase = (char) ('a' + random.nextInt(26)); // Строчная буква
+            char digit = (char) ('0' + random.nextInt(10));     // Цифра
+            String specialChars = "!@#$%^&*()_+{}[]|:;<>,.?/"; // Пример специальных символов
+            char specialChar = specialChars.charAt(random.nextInt(specialChars.length()));
+
+            // Генерируем оставшиеся символы
+            StringBuilder remaining = new StringBuilder(faker.lorem().characters(length - 4));
+
+            // Добавляем обязательные символы
+            remaining.append(upperCase);
+            remaining.append(lowerCase);
+            remaining.append(digit);
+            remaining.append(specialChar);
+
+            // Перемешиваем символы
+            return shuffleString(remaining.toString());
+        }
+
+        // Метод для перемешивания символов строки
+        private static String shuffleString(String input) {
+            Random random = new Random();
+            char[] array = input.toCharArray();
+            for (int i = array.length - 1; i > 0; i--) {
+                int index = random.nextInt(i + 1);
+                // Swap
+                char temp = array[index];
+                array[index] = array[i];
+                array[i] = temp;
+            }
+            return new String(array);
+        }
 
 
-}
+    }
+
+

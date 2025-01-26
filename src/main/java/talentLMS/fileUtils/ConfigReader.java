@@ -30,7 +30,4 @@ public class ConfigReader {
         return properties.getProperty(key);
     }
 
-    public static void main(String[] args) {
-        System.out.println(getProperty("browserType").trim());
-    }
 }

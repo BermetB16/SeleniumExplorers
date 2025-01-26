@@ -1,18 +1,42 @@
 package talentLMS.page;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.interactions.Actions;
 import talentLMS.driver.Driver;
 import talentLMS.helper.WebElementActions;
 import org.openqa.selenium.support.PageFactory;
+import talentLMS.page.dashboard.DashboardPage;
 import talentLMS.page.users.AddUserPage;
+import talentLMS.utils.randomEntityUtils.RandomUserGenerator;
+
+import java.time.Duration;
 
 
-public abstract class BasePage {
-   public WebElementActions webElementActions = new WebElementActions();
+public  class BasePage {
     public WebDriver driver;
-
+    public WebElementActions webElementActions;
+    public RandomUserGenerator randomUserGenerator;
+    public Actions actions;
 
     public BasePage() {
-        PageFactory.initElements(Driver.getDriver(), this);
+        // Инициализация driver
+        driver = Driver.getDriver();
+
+        // Инициализация зависимостей
+        webElementActions = new WebElementActions();
+        randomUserGenerator = new RandomUserGenerator();
+        actions = new Actions(driver, Duration.ofSeconds(10));
+
+        // Уберите инициализацию dashboardPage отсюда
+        // dashboardPage = new DashboardPage();
+        PageFactory.initElements(driver, this);
     }
+    public <T extends BasePage> T getPage(Class<T> pageClass) {
+        try {
+            return pageClass.getDeclaredConstructor().newInstance();
+        } catch (Exception e) {
+            throw new RuntimeException("Не удалось создать экземпляр страницы: " + pageClass.getName(), e);
+        }
+    }
+
 }
