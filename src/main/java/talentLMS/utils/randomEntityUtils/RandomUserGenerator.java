@@ -22,15 +22,13 @@ public class RandomUserGenerator {
         return faker.internet().emailAddress();
     }
 
-    public String randomPassword(){
-        return faker.internet().password();
-    }
+
 
     public String randomUserName(){
         return faker.name().username();
     }
 
     public User randomUser(){
-        return new User(randomFirstName(), randomLastName(), randomUserName(),randomEmail(), randomPassword());
+        return new User(randomFirstName(), randomLastName(), randomUserName(),randomEmail());
     }
 }

@@ -3,6 +3,7 @@ package talentLMS.page;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
 import talentLMS.driver.Driver;
+import talentLMS.entity.User;
 import talentLMS.helper.WebElementActions;
 import org.openqa.selenium.support.PageFactory;
 import talentLMS.page.dashboard.DashboardPage;
@@ -17,6 +18,7 @@ public  class BasePage {
     public WebElementActions webElementActions;
     public RandomUserGenerator randomUserGenerator;
     public Actions actions;
+    public User user;
 
     public BasePage() {
         // Инициализация driver
@@ -31,12 +33,5 @@ public  class BasePage {
         // dashboardPage = new DashboardPage();
         PageFactory.initElements(driver, this);
     }
-    public <T extends BasePage> T getPage(Class<T> pageClass) {
-        try {
-            return pageClass.getDeclaredConstructor().newInstance();
-        } catch (Exception e) {
-            throw new RuntimeException("Не удалось создать экземпляр страницы: " + pageClass.getName(), e);
-        }
-    }
 
-}
+    }

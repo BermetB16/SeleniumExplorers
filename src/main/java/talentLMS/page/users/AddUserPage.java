@@ -27,15 +27,7 @@ public class AddUserPage extends BasePage {
     @FindBy(xpath = "//input[@name ='submit_personal_details']")
     public WebElement addUserButton;
 
-    public AddUserPage addNewUser(User user) {
-        webElementActions.sendKeys(firstName, user.getFirstName())
-                .sendKeys(lastName, user.getLastName())
-                .sendKeys(email, user.getEmail())
-                .sendKeys(username, user.getUserName())
-                .sendKeys(password, AddUserPage.generateStrongPassword(30))
-                .click(addUserButton);
-        return this;
-    }
+
 
         public static String generateStrongPassword(int length) {
             if (length < 8) {

@@ -8,26 +8,23 @@ import talentLMS.page.login.LoginPage;
 
 import java.time.Duration;
 
-public class AddUSerTest extends BaseTest{
+public class UsersTest extends BaseTest{
     @Test
     public void addNewUserTest(){
 
         driver.get("https://seleniumexplorers.talentlms.com/plus/login?redirect=%2Fdashboard");
         loginPage.doLogin(ConfigReader.getProperty("userName"), ConfigReader.getProperty("password"))
-                .goToLegacyInterface();
-        addUserPage.addNewUser(randomUser);
+                .goToLegacyInterface()
+                .addNewUser(randomUser);
 
 
+    }
 
-
-
-
-
-
-
-
-
-
+    @Test
+    public void renameFirstNAme(){
+        driver.get("https://seleniumexplorers.talentlms.com/plus/login?redirect=%2Fdashboard");
+        loginPage.doLogin(ConfigReader.getProperty("userName"), ConfigReader.getProperty("password")).goToLegacyInterface()
+                .updateInfoOfUsers("F. Rockhold");
     }
 
 

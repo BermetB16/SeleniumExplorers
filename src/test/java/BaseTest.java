@@ -32,12 +32,6 @@ import org.testng.annotations.BeforeSuite;
             randomUser = randomUserGenerator.randomUser();
         }
 
-        public <T extends BasePage> T getPage(Class<T> pageClass) {
-            try {
-                return pageClass.getDeclaredConstructor().newInstance();
-            } catch (Exception e) {
-                throw new RuntimeException("Не удалось создать экземпляр страницы: " + pageClass.getName(), e);
-            }
-        }
+
     }
 
