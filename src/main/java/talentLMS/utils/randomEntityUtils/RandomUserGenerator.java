@@ -3,9 +3,12 @@ package talentLMS.utils.randomEntityUtils;
 import com.github.javafaker.Faker;
 import talentLMS.entity.User;
 
+import java.util.Locale;
+
 public class RandomUserGenerator {
 
-    Faker faker = new Faker();
+    // Явно задаем локаль
+    Faker faker = new Faker(new Locale("en"));
 
     public String randomFirstName(){
         return faker.name().fullName();
@@ -19,15 +22,13 @@ public class RandomUserGenerator {
         return faker.internet().emailAddress();
     }
 
-    public String randomPassword(){
-        return faker.internet().password();
-    }
+
 
     public String randomUserName(){
         return faker.name().username();
     }
 
     public User randomUser(){
-        return new User(randomFirstName(), randomLastName(), randomUserName(),randomEmail(), randomPassword());
+        return new User(randomFirstName(), randomLastName(), randomUserName(),randomEmail());
     }
 }

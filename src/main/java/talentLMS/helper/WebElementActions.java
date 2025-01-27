@@ -26,6 +26,7 @@ public class WebElementActions {
     public WebElementActions click(WebElement element){
         waitElementToBeDisplayed(element);
         waitBtnToBeClickable(element);
+        element.click();
         return this;
     }
 
