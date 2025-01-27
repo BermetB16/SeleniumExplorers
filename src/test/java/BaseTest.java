@@ -5,6 +5,7 @@ import talentLMS.helper.WebElementActions;
 import talentLMS.page.BasePage;
 import talentLMS.page.dashboard.DashboardPage;
 import talentLMS.page.login.LoginPage;
+import talentLMS.page.users.AddCategoryPage;
 import talentLMS.page.users.AddUserPage;
 import talentLMS.utils.randomEntityUtils.RandomUserGenerator;
 import org.openqa.selenium.WebDriver;
@@ -19,6 +20,7 @@ import org.testng.annotations.BeforeSuite;
         RandomUserGenerator randomUserGenerator;
         Actions actions;
         User randomUser;
+        AddCategoryPage addCategoryPage;
 
         @BeforeSuite
         public void beforeSuite() {
