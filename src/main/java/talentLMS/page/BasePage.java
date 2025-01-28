@@ -22,7 +22,6 @@ public  class BasePage {
     public Actions actions;
     public User user;
     public AddCategoryPage addCategoryPage;
-    public DeleteCategoryPage deleteCategoryPage;
 
     public BasePage() {
         // Инициализация driver

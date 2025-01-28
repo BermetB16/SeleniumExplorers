@@ -4,9 +4,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import talentLMS.driver.Driver;
 import talentLMS.entity.User;
 import talentLMS.page.BasePage;
 import talentLMS.page.users.AddCategoryPage;
@@ -67,6 +67,7 @@ public class DashboardPage extends BasePage {
     }
 
     public DeleteCategoryPage deleteCategory(String categoryName){
+        DeleteCategoryPage deleteCategoryPage = new DeleteCategoryPage();
         webElementActions.click(categoriesBtn);
         driver.findElement(By.xpath("//a[contains(text(),'"+ categoryName + "')]"));
         if (categoryName != null) {
@@ -74,14 +75,31 @@ public class DashboardPage extends BasePage {
         } else {
             throw new NoSuchElementException("Категория с именем " + categoryName + " не найдена.");
         }
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.elementToBeClickable(deleteCategoryPage.deleteCategoryBtn));
-        webElementActions.click(deleteCategoryPage.deleteCategoryBtn);
 
-        wait.until(ExpectedConditions.elementToBeClickable(deleteCategoryPage.finalDeleteCategoryBtn));
+        PageFactory.initElements(driver, deleteCategoryPage);
+
+        webElementActions.click(deleteCategoryPage.deleteCategoryBtn);
         webElementActions.click(deleteCategoryPage.finalDeleteCategoryBtn);
 
         return deleteCategoryPage;
+    }
+
+    public AddCategoryPage updateCategory(String username){
+        DeleteCategoryPage deleteCategoryPage = new DeleteCategoryPage();
+        webElementActions.click(categoriesBtn);
+        driver.findElement(By.xpath("//a[contains(text(),'"+ username + "')]"));
+        if (username != null) {
+            driver.findElement(By.xpath("//a[contains(text(),'"+ username + "')]")).click();
+        } else {
+            throw new NoSuchElementException("Категория с именем " + username + " не найдена.");
+        }
+        addCategoryPage = new AddCategoryPage();
+        addCategoryPage.accountName.clear();
+        webElementActions.sendKeys(addCategoryPage.accountName,randomUserGenerator.randomFirstName());
+        PageFactory.initElements(driver, deleteCategoryPage);
+        webElementActions.click(deleteCategoryPage.updateCategoryBtn);
+        return new AddCategoryPage();
+
     }
 
 
@@ -96,13 +114,6 @@ public class DashboardPage extends BasePage {
         return this;
     }
 
-//    public AddCategoryPage addNewCategory(String accountName){
-//        webElementActions.click(addCategoryBtn);
-//       // webElementActions.sendKeys(addCategoryPage.accountName, accountName);
-//        webElementActions.click(addCategoryPage.parentCategoryBtn).click(addCategoryPage.iTCategory);
-//        webElementActions.click(addCategoryPage.categorySubmitBtn);
-//        return new AddCategoryPage();
-//}
 
     public AddCategoryPage addNewCategory(String accountName) {
 

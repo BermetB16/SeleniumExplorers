@@ -14,4 +14,7 @@ public class DeleteCategoryPage extends BasePage {
 
      @FindBy(xpath = "//a[@id=\"tl-confirm-submit\"]")
     public WebElement finalDeleteCategoryBtn;
+
+     @FindBy(xpath = "//input[@value=\"Update category\"]")
+    public WebElement updateCategoryBtn;
 }

@@ -22,4 +22,13 @@ public class CategoryTest extends BaseTest{
         String accountName = ConfigReader.getProperty("accountName");
         dashboardPage.deleteCategory(accountName);
     }
+
+    @Test
+    public void updateCategoryNameTest(){
+        driver.get("https://seleniumexplorers.talentlms.com/plus/login?redirect=%2Fdashboard");
+        loginPage.doLogin(ConfigReader.getProperty("userName"), ConfigReader.getProperty("password"))
+                .goToLegacyInterface();
+        String accountName = ConfigReader.getProperty("accountName");
+        dashboardPage.updateCategory(accountName);
+    }
 }

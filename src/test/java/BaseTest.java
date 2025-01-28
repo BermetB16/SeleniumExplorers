@@ -20,7 +20,7 @@ import org.testng.annotations.BeforeSuite;
         RandomUserGenerator randomUserGenerator;
         Actions actions;
         User randomUser;
-        AddCategoryPage addCategoryPage;
+        AddCategoryPage addCategoryPage = new AddCategoryPage();
 
         @BeforeSuite
         public void beforeSuite() {
