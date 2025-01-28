@@ -11,4 +11,13 @@ public class CoursesTest extends BaseTest{
         addCoursePage.addCourse(randomCourse);
     }
 
+    @Test
+    public void deleteCourse(){
+        driver.get("https://seleniumexplorers.talentlms.com/plus/login?redirect=%2Fdashboard");
+        loginPage.doLogin(ConfigReader.getProperty("userName"), ConfigReader.getProperty("password"))
+                .goToLegacyInterface();
+        addCoursePage.deleteCourse("Binance");
+
+    }
+
 }
