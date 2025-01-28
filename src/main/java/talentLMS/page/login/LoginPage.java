@@ -37,17 +37,17 @@ public class LoginPage extends BasePage {
 
 
    public DashboardPage doLogin(String username, String password){
-       webElementActions.sendKeys(this.username, username)
-               .sendKeys(this.password,password)
-               .click(login);
+       webElementActions.sendKeys(this.username, username);
+              webElementActions .sendKeys(this.password,password);
+            webElementActions .click(login);
        return new DashboardPage();
 
    }
 
 public void testNegativeLogin() {
-  webElementActions.sendKeys(this.username,"sdsdsdcsdsd")
-                    .sendKeys(this.password,"sdcsdc@gamil.com")
-                    .click(login);
+  webElementActions.sendKeys(this.username,"sdsdsdcsdsd");
+               webElementActions     .sendKeys(this.password,"sdcsdc@gamil.com");
+                webElementActions    .click(login);
     String wrongLoginText = loginErrorContainer.getText();
     Assert.assertEquals(wrongLoginText,"Your username or password is incorrect. Please try again.");
 
@@ -56,9 +56,9 @@ public void testNegativeLogin() {
 }
 
 public void testWithEmptyParametersLogin(){
-    webElementActions.sendKeys(this.username,"")
-            .sendKeys(this.password,"")
-            .click(login);
+    webElementActions.sendKeys(this.username,"");
+          webElementActions  .sendKeys(this.password,"");
+         webElementActions   .click(login);
     String requiredField = userNameError.getText();
     Assert.assertEquals(requiredField,"This is a required field");
 

@@ -4,6 +4,7 @@ import talentLMS.entity.User;
 import talentLMS.helper.WebElementActions;
 import talentLMS.page.BasePage;
 import talentLMS.page.dashboard.DashboardPage;
+import talentLMS.page.groups.GroupsPage;
 import talentLMS.page.login.LoginPage;
 import talentLMS.page.users.AddUserPage;
 import talentLMS.utils.randomEntityUtils.RandomUserGenerator;
@@ -30,6 +31,9 @@ import org.testng.annotations.BeforeSuite;
             randomUserGenerator = new RandomUserGenerator();
             actions = new Actions(driver);
             randomUser = randomUserGenerator.randomUser();
+            GroupsPage groupsPage=new GroupsPage();
+
+
         }
 
 
