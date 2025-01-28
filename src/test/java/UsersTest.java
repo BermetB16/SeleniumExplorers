@@ -24,7 +24,7 @@ public class UsersTest extends BaseTest{
     public void renameFirstNAme(){
         driver.get("https://seleniumexplorers.talentlms.com/plus/login?redirect=%2Fdashboard");
         loginPage.doLogin(ConfigReader.getProperty("userName"), ConfigReader.getProperty("password")).goToLegacyInterface()
-                .updateInfoOfUsers("F. Rockhold");
+                .updateInfoOfUsers("A. Rockhold");
     }
 
 

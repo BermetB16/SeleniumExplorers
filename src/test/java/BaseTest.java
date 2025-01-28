@@ -1,11 +1,14 @@
 import org.openqa.selenium.interactions.Actions;
 import talentLMS.driver.Driver;
+import talentLMS.entity.Course;
 import talentLMS.entity.User;
 import talentLMS.helper.WebElementActions;
 import talentLMS.page.BasePage;
+import talentLMS.page.courses.AddCoursePage;
 import talentLMS.page.dashboard.DashboardPage;
 import talentLMS.page.login.LoginPage;
 import talentLMS.page.users.AddUserPage;
+import talentLMS.utils.randomEntityUtils.RandomCourseGenerator;
 import talentLMS.utils.randomEntityUtils.RandomUserGenerator;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.BeforeSuite;
@@ -19,6 +22,9 @@ import org.testng.annotations.BeforeSuite;
         RandomUserGenerator randomUserGenerator;
         Actions actions;
         User randomUser;
+        AddCoursePage addCoursePage ;
+        RandomCourseGenerator randomCourseGenerator ;
+        Course randomCourse ;
 
         @BeforeSuite
         public void beforeSuite() {
@@ -30,6 +36,8 @@ import org.testng.annotations.BeforeSuite;
             randomUserGenerator = new RandomUserGenerator();
             actions = new Actions(driver);
             randomUser = randomUserGenerator.randomUser();
+            randomCourseGenerator = new RandomCourseGenerator();
+            randomCourse = randomCourseGenerator.randomCourse();
         }
 
 
