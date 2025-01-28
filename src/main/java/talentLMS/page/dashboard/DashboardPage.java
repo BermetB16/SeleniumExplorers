@@ -8,6 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import talentLMS.entity.User;
+import talentLMS.helper.WebElementActions;
 import talentLMS.page.BasePage;
 import talentLMS.page.users.AddCategoryPage;
 import talentLMS.page.users.AddUserPage;
@@ -48,12 +49,12 @@ public class DashboardPage extends BasePage {
 
     public AddUserPage addNewUser(User user) {
         webElementActions.click(addUserBtn);
-        webElementActions.sendKeys(new AddUserPage().firstName, user.getFirstName())
-                .sendKeys(new AddUserPage().lastName, user.getLastName())
-                .sendKeys(new AddUserPage().email, user.getEmail())
-                .sendKeys(new AddUserPage().username, user.getUserName())
-                .sendKeys(new AddUserPage().password, AddUserPage.generateStrongPassword(30))
-                .click(new AddUserPage().addUserButton);
+        webElementActions.sendKeys(new AddUserPage().firstName, user.getFirstName());
+        WebElementActions.sendKeys(new AddUserPage().lastName, user.getLastName());
+             WebElementActions   .sendKeys(new AddUserPage().email, user.getEmail());
+               WebElementActions.sendKeys(new AddUserPage().username, user.getUserName());
+           WebElementActions     .sendKeys(new AddUserPage().password, AddUserPage.generateStrongPassword(30));
+             WebElementActions   .click(new AddUserPage().addUserButton);
         return new AddUserPage();
     }
 
@@ -61,7 +62,8 @@ public class DashboardPage extends BasePage {
         webElementActions.click(usersButton);
         driver.findElement(By.xpath("//tr[@role='row']/td/a/span[text()='" + username + "']")).click();
         firstNameField.clear();
-        webElementActions.sendKeys(firstNameField,randomUserGenerator.randomFirstName()).click(new AddUserPage().addUserButton);
+        webElementActions.sendKeys(firstNameField,randomUserGenerator.randomFirstName());
+        webElementActions.click(new AddUserPage().addUserButton);
         return new AddUserPage();
 
     }

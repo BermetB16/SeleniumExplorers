@@ -6,6 +6,7 @@ import talentLMS.helper.WebElementActions;
 import talentLMS.page.BasePage;
 import talentLMS.page.courses.AddCoursePage;
 import talentLMS.page.dashboard.DashboardPage;
+import talentLMS.page.groups.GroupsPage;
 import talentLMS.page.login.LoginPage;
 import talentLMS.page.users.AddCategoryPage;
 import talentLMS.page.users.AddUserPage;
@@ -38,6 +39,9 @@ import org.testng.annotations.BeforeSuite;
             randomUserGenerator = new RandomUserGenerator();
             actions = new Actions(driver);
             randomUser = randomUserGenerator.randomUser();
+            GroupsPage groupsPage=new GroupsPage();
+
+
         }
 
 
