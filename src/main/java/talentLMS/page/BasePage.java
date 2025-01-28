@@ -3,6 +3,7 @@ package talentLMS.page;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
 import talentLMS.driver.Driver;
+import talentLMS.entity.Course;
 import talentLMS.entity.User;
 import talentLMS.helper.WebElementActions;
 import org.openqa.selenium.support.PageFactory;
@@ -10,6 +11,7 @@ import talentLMS.page.dashboard.DashboardPage;
 import talentLMS.page.users.AddCategoryPage;
 import talentLMS.page.users.AddUserPage;
 import talentLMS.page.users.DeleteCategoryPage;
+import talentLMS.utils.randomEntityUtils.RandomCourseGenerator;
 import talentLMS.utils.randomEntityUtils.RandomUserGenerator;
 
 import java.time.Duration;
@@ -22,6 +24,8 @@ public  class BasePage {
     public Actions actions;
     public User user;
     public AddCategoryPage addCategoryPage;
+    public RandomCourseGenerator randomCourseGenerator = new RandomCourseGenerator();
+    public Course course = randomCourseGenerator.randomCourse();
 
     public BasePage() {
         // Инициализация driver

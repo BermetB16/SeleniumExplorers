@@ -46,6 +46,15 @@ public class DashboardPage extends BasePage {
     @FindBy(xpath = "//a[contains(text(),\"Categories\")]")
     public WebElement categoriesBtn;
 
+
+    public DashboardPage goToLegacyInterface() {
+        actions.moveToElement(profileMenuBtn).perform();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOf(goToLegacyInterfaceBtn));
+        webElementActions.click(goToLegacyInterfaceBtn);
+        return this;
+    }
+
     public AddUserPage addNewUser(User user) {
         webElementActions.click(addUserBtn);
         webElementActions.sendKeys(new AddUserPage().firstName, user.getFirstName())
@@ -105,16 +114,6 @@ public class DashboardPage extends BasePage {
 
 
 
-
-    public DashboardPage goToLegacyInterface() {
-        actions.moveToElement(profileMenuBtn).perform();
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.visibilityOf(goToLegacyInterfaceBtn));
-        webElementActions.click(goToLegacyInterfaceBtn);
-        return this;
-    }
-
-
     public AddCategoryPage addNewCategory(String accountName) {
 
         AddCategoryPage addCategoryPage = new AddCategoryPage();
@@ -134,6 +133,7 @@ public class DashboardPage extends BasePage {
         // Возвращаем объект страницы AddCategoryPage
         return addCategoryPage;
     }
+
 
 }
 
