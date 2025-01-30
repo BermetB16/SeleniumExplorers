@@ -8,15 +8,10 @@ import talentLMS.entity.User;
 import talentLMS.helper.WebElementActions;
 import org.openqa.selenium.support.PageFactory;
 import talentLMS.page.dashboard.DashboardPage;
-<<<<<<< HEAD
 import talentLMS.page.login.LoginPage;
-import talentLMS.page.users.AddUserPage;
 import talentLMS.utils.randomEntityUtils.RandomCourseGenerator;
-=======
-import talentLMS.page.users.AddCategoryPage;
-import talentLMS.page.users.AddUserPage;
-import talentLMS.page.users.DeleteCategoryPage;
->>>>>>> 6e268cc0fec98e189791bb587c0d65575f8a87c8
+import talentLMS.page.categories.AddCategoryPage;
+import talentLMS.page.categories.DeleteCategoryPage;
 import talentLMS.utils.randomEntityUtils.RandomUserGenerator;
 
 import java.time.Duration;
@@ -29,12 +24,12 @@ public  class BasePage {
     public RandomCourseGenerator randomCourseGenerator;
     public Actions actions;
     public User user;
-<<<<<<< HEAD
     public LoginPage loginPage ;
     public Course course;
-=======
     public AddCategoryPage addCategoryPage;
->>>>>>> 6e268cc0fec98e189791bb587c0d65575f8a87c8
+    public DashboardPage dashboardPage = new DashboardPage();
+    public DeleteCategoryPage deleteCategoryPage = new DeleteCategoryPage();
+
 
     public BasePage() {
         driver = Driver.getDriver();
