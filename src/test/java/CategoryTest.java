@@ -1,34 +1,32 @@
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import talentLMS.fileUtils.ConfigReader;
 
 public class CategoryTest extends BaseTest{
 
-    @Test
-    public void addCategoryTest(){
+    @BeforeClass
+    public void authorization(){
         driver.get("https://seleniumexplorers.talentlms.com/plus/login?redirect=%2Fdashboard");
         loginPage.doLogin(ConfigReader.getProperty("userName"), ConfigReader.getProperty("password"))
                 .goToLegacyInterface();
-        String accountName = ConfigReader.getProperty("accountName");
+    }
 
+    @Test
+    public void addCategoryTest(){
+        String accountName = ConfigReader.getProperty("accountName");
         // Вызываем метод для добавления новой категории с передачей accountName
-        dashboardPage.addNewCategory(accountName);
+        addCategoryPage.addNewCategory(accountName);
     }
 
     @Test
     public void deleteCategoryTest(){
-        driver.get("https://seleniumexplorers.talentlms.com/plus/login?redirect=%2Fdashboard");
-        loginPage.doLogin(ConfigReader.getProperty("userName"), ConfigReader.getProperty("password"))
-                .goToLegacyInterface();
         String accountName = ConfigReader.getProperty("accountName");
-        dashboardPage.deleteCategory(accountName);
+        deleteCategoryPage.deleteCategory(accountName);
     }
 
     @Test
     public void updateCategoryNameTest(){
-        driver.get("https://seleniumexplorers.talentlms.com/plus/login?redirect=%2Fdashboard");
-        loginPage.doLogin(ConfigReader.getProperty("userName"), ConfigReader.getProperty("password"))
-                .goToLegacyInterface();
         String accountName = ConfigReader.getProperty("accountName");
-        dashboardPage.updateCategory(accountName);
+        addCategoryPage.updateCategory(accountName);
     }
 }
