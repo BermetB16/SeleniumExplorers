@@ -19,28 +19,23 @@ import java.time.Duration;
 
 public  class BasePage {
     public WebDriver driver;
-    public WebElementActions webElementActions;
-    public RandomUserGenerator randomUserGenerator;
-    public RandomCourseGenerator randomCourseGenerator;
-    public Actions actions;
-    public User user;
-    public LoginPage loginPage ;
-    public Course course;
-    public AddCategoryPage addCategoryPage;
+    public WebElementActions webElementActions = new WebElementActions();;
+    public RandomUserGenerator randomUserGenerator = new RandomUserGenerator();
+    public RandomCourseGenerator randomCourseGenerator = new RandomCourseGenerator();
+    public Actions actions ;
+    public User user = randomUserGenerator.randomUser();
+    public LoginPage loginPage = new LoginPage() ;
+    public Course course = randomCourseGenerator.randomCourse();
+    public AddCategoryPage addCategoryPage = new AddCategoryPage();
     public DashboardPage dashboardPage = new DashboardPage();
     public DeleteCategoryPage deleteCategoryPage = new DeleteCategoryPage();
 
 
+
+
     public BasePage() {
         driver = Driver.getDriver();
-        webElementActions = new WebElementActions();
-        randomUserGenerator = new RandomUserGenerator();
-        randomCourseGenerator = new RandomCourseGenerator();
         actions = new Actions(driver,Duration.ofSeconds(10));
-        randomUserGenerator.randomUser();
-        randomUserGenerator.randomUser();
-        loginPage = new LoginPage();
-        course = randomCourseGenerator.randomCourse();
         PageFactory.initElements(driver, this);
     }
 
