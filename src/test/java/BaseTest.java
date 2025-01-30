@@ -6,7 +6,6 @@ import talentLMS.helper.WebElementActions;
 import talentLMS.page.BasePage;
 import talentLMS.page.courses.AddCoursePage;
 import talentLMS.page.dashboard.DashboardPage;
-import talentLMS.page.groups.GroupsPage;
 import talentLMS.page.login.LoginPage;
 import talentLMS.page.users.AddCategoryPage;
 import talentLMS.page.users.AddUserPage;
@@ -22,12 +21,15 @@ import org.testng.annotations.BeforeSuite;
         DashboardPage dashboardPage;
         AddUserPage addUserPage;
         RandomUserGenerator randomUserGenerator;
-        RandomCourseGenerator randomCourseGenerator = new RandomCourseGenerator();
         Actions actions;
         User randomUser;
+<<<<<<< HEAD
+        AddCoursePage addCoursePage ;
+        RandomCourseGenerator randomCourseGenerator ;
+        Course randomCourse ;
+=======
         AddCategoryPage addCategoryPage = new AddCategoryPage();
-        AddCoursePage addCoursePage = new AddCoursePage();
-        Course randomCourse = randomCourseGenerator.randomCourse();
+>>>>>>> 6e268cc0fec98e189791bb587c0d65575f8a87c8
 
         @BeforeSuite
         public void beforeSuite() {
@@ -39,9 +41,8 @@ import org.testng.annotations.BeforeSuite;
             randomUserGenerator = new RandomUserGenerator();
             actions = new Actions(driver);
             randomUser = randomUserGenerator.randomUser();
-            GroupsPage groupsPage=new GroupsPage();
-
-
+            randomCourseGenerator = new RandomCourseGenerator();
+            randomCourse = randomCourseGenerator.randomCourse();
         }
 
 
