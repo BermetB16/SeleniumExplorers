@@ -18,13 +18,13 @@ import java.time.Duration;
 public class DashboardPage extends BasePage {
 
     @FindBy(xpath = "//div[@id='tl-admin-users']//div[@class='hidden-phone']/a[contains(text(),'Add user')]")
-    public WebElement addUserBtn;
+    public WebElement addUserButton;
 
     @FindBy(xpath = "//div[@data-testid='profile-menu-button']")
-    public WebElement profileMenuBtn;
+    public WebElement profileMenuButton;
 
     @FindBy(xpath = "//a[@data-testid='legacy-menu-item']")
-    public WebElement goToLegacyInterfaceBtn;
+    public WebElement goToLegacyInterfaceButton;
 
     @FindBy(xpath = "//div[@class='tl-bold-link']/a[@href = \"https://seleniumexplorers.talentlms.com/user/index/gridPref:reset\"]")
     public WebElement usersButton;
@@ -39,24 +39,15 @@ public class DashboardPage extends BasePage {
     public WebElement firstNameField;
 
 
-//Categories
+
     @FindBy(xpath = "//a[@href=\"https://seleniumexplorers.talentlms.com/category/create\"]")
     public WebElement addCategoryBtn;
 
     @FindBy(xpath = "//a[contains(text(),\"Categories\")]")
     public WebElement categoriesBtn;
 
-
-    public DashboardPage goToLegacyInterface() {
-        actions.moveToElement(profileMenuBtn).perform();
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.visibilityOf(goToLegacyInterfaceBtn));
-        webElementActions.click(goToLegacyInterfaceBtn);
-        return this;
-    }
-
     public AddUserPage addNewUser(User user) {
-        webElementActions.click(addUserBtn);
+        webElementActions.click(addUserButton);
         webElementActions.sendKeys(new AddUserPage().firstName, user.getFirstName())
                 .sendKeys(new AddUserPage().lastName, user.getLastName())
                 .sendKeys(new AddUserPage().email, user.getEmail())
@@ -114,6 +105,17 @@ public class DashboardPage extends BasePage {
 
 
 
+
+
+    public DashboardPage goToLegacyInterface() {
+        actions.moveToElement(profileMenuButton).perform();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOf(goToLegacyInterfaceButton));
+        webElementActions.click(goToLegacyInterfaceButton);
+        return this;
+    }
+
+
     public AddCategoryPage addNewCategory(String accountName) {
 
         AddCategoryPage addCategoryPage = new AddCategoryPage();
@@ -133,7 +135,6 @@ public class DashboardPage extends BasePage {
         // Возвращаем объект страницы AddCategoryPage
         return addCategoryPage;
     }
-
 
 }
 

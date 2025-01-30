@@ -21,12 +21,15 @@ import org.testng.annotations.BeforeSuite;
         DashboardPage dashboardPage;
         AddUserPage addUserPage;
         RandomUserGenerator randomUserGenerator;
-        RandomCourseGenerator randomCourseGenerator = new RandomCourseGenerator();
         Actions actions;
         User randomUser;
+<<<<<<< HEAD
+        AddCoursePage addCoursePage ;
+        RandomCourseGenerator randomCourseGenerator ;
+        Course randomCourse ;
+=======
         AddCategoryPage addCategoryPage = new AddCategoryPage();
-        AddCoursePage addCoursePage = new AddCoursePage();
-        Course randomCourse = randomCourseGenerator.randomCourse();
+>>>>>>> 6e268cc0fec98e189791bb587c0d65575f8a87c8
 
         @BeforeSuite
         public void beforeSuite() {
@@ -38,6 +41,8 @@ import org.testng.annotations.BeforeSuite;
             randomUserGenerator = new RandomUserGenerator();
             actions = new Actions(driver);
             randomUser = randomUserGenerator.randomUser();
+            randomCourseGenerator = new RandomCourseGenerator();
+            randomCourse = randomCourseGenerator.randomCourse();
         }
 
 
