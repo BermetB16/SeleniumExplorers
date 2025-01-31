@@ -60,7 +60,7 @@ public class AddCategoryPage extends BasePage {
         webElementActions.sendKeys(addCategoryPage.accountName, accountName); // Правильный способ
 
         // Нажимаем на кнопку выбора родительской категории и выбираем нужную категорию
-        webElementActions.click(addCategoryPage.parentCategoryBtn).click(addCategoryPage.iTCategory);
+        webElementActions.click(addCategoryPage.parentCategoryBtn).click(iTCategory);
 
         // Отправляем форму
         webElementActions.click(addCategoryPage.categorySubmitBtn);
