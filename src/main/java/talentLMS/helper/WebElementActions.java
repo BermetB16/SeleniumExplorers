@@ -12,40 +12,45 @@ public class WebElementActions {
 
     private static Actions actions = new Actions(Driver.getDriver());
 
-    public static void waitBtnToBeClickable(WebElement element) {
+    public WebElementActions waitBtnToBeClickable(WebElement element) {
         new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(15))
                 .until(ExpectedConditions.elementToBeClickable(element));
+        return this;
     }
 
-    public static void waitElementToBeDisplayed(WebElement element) {
+    public WebElementActions waitElementToBeDisplayed(WebElement element) {
         new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(15))
                 .until(ExpectedConditions.visibilityOf(element));
+        return this;
     }
 
-    public static void click(WebElement element) {
+    public WebElementActions click(WebElement element) {
         waitElementToBeDisplayed(element);
         waitBtnToBeClickable(element);
         element.click();
+        return this;
     }
 
-    public static void sendKeys(WebElement element, String text) {
+    public WebElementActions sendKeys(WebElement element, String text) {
         waitElementToBeDisplayed(element);
         element.sendKeys(text);
+        return this;
     }
 
-    public static void doubleClick(WebElement element) {
+    public  WebElementActions doubleClick(WebElement element) {
         waitElementToBeDisplayed(element);
         waitBtnToBeClickable(element);
         actions.doubleClick(element).perform();
+        return this;
     }
 
-    public static void rightClick(WebElement element) {
+    public void rightClick(WebElement element) {
         waitElementToBeDisplayed(element);
         waitBtnToBeClickable(element);
         actions.contextClick(element).perform();
     }
 
-    public static String getText(WebElement element) {
+    public String getText(WebElement element) {
         waitElementToBeDisplayed(element); // Ожидание, пока элемент станет видимым
         return element.getText(); // Возврат текста элемента
     }

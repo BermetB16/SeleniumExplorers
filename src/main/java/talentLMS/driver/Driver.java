@@ -1,7 +1,7 @@
 package talentLMS.driver;
 
-import talentLMS.fileUtils.ConfigReader;
 import org.openqa.selenium.WebDriver;
+import talentLMS.fileUtils.ConfigReader;
 
 public class Driver {
     private Driver(){
@@ -12,7 +12,7 @@ public class Driver {
 
     public  static WebDriver getDriver(){
         if (driver == null){
-            switch (ConfigReader.getProperty("browserType").toLowerCase()){
+            switch (ConfigReader.getProperty("browserType")){
                 case "chrome":
                     driver = ChromeWebDriver.loadFromDriver();
                     break;
