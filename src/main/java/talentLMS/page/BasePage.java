@@ -8,10 +8,10 @@ import talentLMS.entity.User;
 import talentLMS.helper.WebElementActions;
 import org.openqa.selenium.support.PageFactory;
 import talentLMS.page.dashboard.DashboardPage;
-import talentLMS.page.users.AddCategoryPage;
-import talentLMS.page.users.AddUserPage;
-import talentLMS.page.users.DeleteCategoryPage;
+import talentLMS.page.login.LoginPage;
 import talentLMS.utils.randomEntityUtils.RandomCourseGenerator;
+import talentLMS.page.categories.AddCategoryPage;
+import talentLMS.page.categories.DeleteCategoryPage;
 import talentLMS.utils.randomEntityUtils.RandomUserGenerator;
 
 import java.time.Duration;
@@ -19,25 +19,23 @@ import java.time.Duration;
 
 public  class BasePage {
     public WebDriver driver;
-    public WebElementActions webElementActions;
-    public RandomUserGenerator randomUserGenerator;
-    public Actions actions;
-    public User user;
-    public AddCategoryPage addCategoryPage;
+    public WebElementActions webElementActions = new WebElementActions();;
+    public RandomUserGenerator randomUserGenerator = new RandomUserGenerator();
     public RandomCourseGenerator randomCourseGenerator = new RandomCourseGenerator();
+    public Actions actions ;
+    public User user = randomUserGenerator.randomUser();
+    public LoginPage loginPage = new LoginPage() ;
     public Course course = randomCourseGenerator.randomCourse();
+    public AddCategoryPage addCategoryPage = new AddCategoryPage();
+    public DashboardPage dashboardPage = new DashboardPage();
+    public DeleteCategoryPage deleteCategoryPage = new DeleteCategoryPage();
+
+
+
 
     public BasePage() {
-        // Инициализация driver
         driver = Driver.getDriver();
-
-        // Инициализация зависимостей
-        webElementActions = new WebElementActions();
-        randomUserGenerator = new RandomUserGenerator();
-        actions = new Actions(driver, Duration.ofSeconds(10));
-
-        // Уберите инициализацию dashboardPage отсюда
-        // dashboardPage = new DashboardPage();
+        actions = new Actions(driver,Duration.ofSeconds(10));
         PageFactory.initElements(driver, this);
     }
 

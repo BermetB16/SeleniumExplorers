@@ -14,8 +14,6 @@ import talentLMS.page.BasePage;
 import java.time.Duration;
 
 public class AddCoursePage extends BasePage {
-    @FindBy(xpath = "//div[@id='tl-admin-dashboard']/div[@class='tl-icons-block']/div[@class='tl-icon-label']/div[@class='hidden-phone']/a[contains(text(),'Add course')]")
-    public WebElement addCourseButton;
 
     @FindBy(xpath = "//div[@class='controls']/div[@class='input-append tl-countdown']/input[@name='name']")
     public WebElement courseNameField;
@@ -32,24 +30,21 @@ public class AddCoursePage extends BasePage {
     @FindBy(css = ".control-group.error .help-inline")
     public WebElement courseNameIsRequiredText;
 
-    @FindBy(css = "div > a[href=\"https://seleniumexplorers.talentlms.com/course/index/gridPref:reset\"]")
-    public WebElement coursesButton;
-
     @FindBy(css = "#tl-confirm-submit")
     public WebElement deleteButton;
 
 
     public AddCoursePage addCourse(Course course){
-webElementActions.click(addCourseButton)
-        .sendKeys(courseNameField, course.getCourseName())
-        .sendKeys(courseCategoryField,course.getCourseCategoryName())
-        .sendKeys(descriptionField, course.getDescription())
-        .click(saveAndSelectUsersButton);
+        webElementActions.click(dashboardPage.addCourseButton)
+                .sendKeys(courseNameField, course.getCourseName())
+                .sendKeys(courseCategoryField,course.getCourseCategoryName())
+                .sendKeys(descriptionField, course.getDescription())
+                .click(saveAndSelectUsersButton);
         return this;
     }
 
     public AddCoursePage addCourseNegativeCase(){
-        webElementActions.click(addCourseButton)
+        webElementActions.click(dashboardPage.addCourseButton)
                 .sendKeys(courseNameField,"")
                 .click(saveAndSelectUsersButton);
         String expectedRequiredText = "'Course name' is required";
@@ -59,7 +54,7 @@ webElementActions.click(addCourseButton)
     }
 
     public AddCoursePage updateInfoOfCourse(String courseName){
-        webElementActions.click(coursesButton);
+        dashboardPage.switchToPage("Courses");
         driver.findElement(By.cssSelector("span[title=\"" + courseName + "\"]")).click();
         courseNameField.clear();
         webElementActions.sendKeys(courseNameField,randomCourseGenerator.randomCourseName())
@@ -68,13 +63,13 @@ webElementActions.click(addCourseButton)
     }
 
     public AddCoursePage deleteCourse(String courseName){
-        webElementActions.click(coursesButton);
+       dashboardPage.switchToPage("Courses");
         WebElement deleteElement = driver.findElement(By.cssSelector("i[onclick*=\"" + courseName + "\"][alt=\"Delete\"]"));
         actions.moveToElement(deleteElement).perform();
         new WebDriverWait(driver, Duration.ofSeconds(5)).until(ExpectedConditions.visibilityOf(deleteElement));
         webElementActions.click(deleteElement).click(deleteButton);
-
-
         return this;
     }
 }
+
+

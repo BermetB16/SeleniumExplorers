@@ -1,6 +1,7 @@
 package talentLMS.page.users;
 
 import com.github.javafaker.Faker;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -25,11 +26,30 @@ public class AddUserPage extends BasePage {
     @FindBy(xpath = "//input[@name = 'password']")
     public WebElement password;
     @FindBy(xpath = "//input[@name ='submit_personal_details']")
-    public WebElement addUserButton;
+    public WebElement addUserSubmitButton;
+
+    public AddUserPage addNewUser(User user) {
+        webElementActions.click(dashboardPage.addUserButton);
+        webElementActions.sendKeys(firstName, user.getFirstName())
+                .sendKeys(lastName, user.getLastName())
+                .sendKeys(email, user.getEmail())
+                .sendKeys(username, user.getUserName())
+                .sendKeys(password,generateStrongPassword(10))
+                .click(addUserSubmitButton);
+        return this;
+    }
+
+    public AddUserPage updateInfoOfUsers(String username) {
+        dashboardPage.switchToPage("Users");
+        driver.findElement(By.xpath("//tr[@role='row']/td/a/span[text()='" + username + "']")).click();
+        firstName.clear();
+        webElementActions.sendKeys(firstName, randomUserGenerator.randomFirstName())
+                .click(new AddUserPage().addUserSubmitButton);
+        return this;
+    }
 
 
-
-        public static String generateStrongPassword(int length) {
+        public String generateStrongPassword( int length){
             if (length < 8) {
                 throw new IllegalArgumentException("Пароль должен быть не менее 8 символов");
             }
@@ -58,7 +78,7 @@ public class AddUserPage extends BasePage {
         }
 
         // Метод для перемешивания символов строки
-        private static String shuffleString(String input) {
+        private static String shuffleString (String input){
             Random random = new Random();
             char[] array = input.toCharArray();
             for (int i = array.length - 1; i > 0; i--) {
