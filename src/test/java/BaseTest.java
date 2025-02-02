@@ -2,9 +2,11 @@ import org.openqa.selenium.interactions.Actions;
 import talentLMS.driver.Driver;
 import talentLMS.entity.Course;
 import talentLMS.entity.User;
+import talentLMS.helper.BrowserManager;
 import talentLMS.helper.WebElementActions;
 import talentLMS.page.courses.AddCoursePage;
-import talentLMS.page.dashboard.DashboardPage;
+import talentLMS.page.dashboard.AdminDashboardNewInterfacePage;
+import talentLMS.page.dashboard.AdminDashboardPage;
 import talentLMS.page.login.LoginPage;
 import talentLMS.page.categories.AddCategoryPage;
 import talentLMS.page.users.AddUserPage;
@@ -14,28 +16,31 @@ import talentLMS.utils.randomEntityUtils.RandomUserGenerator;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.BeforeSuite;
 
-    public abstract class BaseTest {
-        public WebDriver driver;
-        Actions actions;
-        WebElementActions webElementActions = new WebElementActions();
-        LoginPage loginPage = new LoginPage();
-        DashboardPage dashboardPage = new DashboardPage();
-        AddUserPage addUserPage = new AddUserPage();
-        RandomUserGenerator randomUserGenerator = new RandomUserGenerator();
-        User randomUser = randomUserGenerator.randomUser();
-        AddCoursePage addCoursePage = new AddCoursePage() ;
-        RandomCourseGenerator randomCourseGenerator = new RandomCourseGenerator(); ;
-        Course randomCourse  = randomCourseGenerator.randomCourse();
-        DeleteCategoryPage deleteCategoryPage = new DeleteCategoryPage();
+public abstract class BaseTest {
 
-        AddCategoryPage addCategoryPage = new AddCategoryPage();
+    WebDriver driver;
+    Actions actions;
+    WebElementActions webElementActions;
+    BrowserManager browserManager;
 
-        @BeforeSuite
-        public void beforeSuite() {
-            driver = Driver.getDriver();
-            actions = new Actions(driver);
-        }
+    LoginPage loginPage = new LoginPage();
+    AdminDashboardPage adminDashboardPage = new AdminDashboardPage();
+    AdminDashboardNewInterfacePage adminDashboardNewInterfacePage = new AdminDashboardNewInterfacePage();
+    AddUserPage addUserPage = new AddUserPage();
+    AddCoursePage addCoursePage = new AddCoursePage();
+    DeleteCategoryPage deleteCategoryPage = new DeleteCategoryPage();
+    AddCategoryPage addCategoryPage = new AddCategoryPage();
 
+    RandomUserGenerator randomUserGenerator = new RandomUserGenerator();
+    User randomUser = randomUserGenerator.randomUser();
+    RandomCourseGenerator randomCourseGenerator = new RandomCourseGenerator();
+    Course randomCourse = randomCourseGenerator.randomCourse();
 
+    @BeforeSuite
+    public void beforeSuite() {
+        driver = Driver.getDriver();
+        actions = new Actions(driver);
+        webElementActions = new WebElementActions(driver, actions);
+        browserManager = new BrowserManager(driver);
     }
-
+}

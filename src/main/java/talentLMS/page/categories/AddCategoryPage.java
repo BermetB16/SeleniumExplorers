@@ -5,9 +5,15 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import talentLMS.page.BasePage;
+import talentLMS.page.base.BasePage;
+import talentLMS.page.dashboard.AdminDashboardPage;
+import talentLMS.utils.randomEntityUtils.RandomUserGenerator;
 
 public class AddCategoryPage extends BasePage {
+
+    DeleteCategoryPage deleteCategoryPage = new DeleteCategoryPage();
+    AdminDashboardPage adminDashboardPage = new AdminDashboardPage();
+
     @FindBy(xpath = "//input[@placeholder=\"e.g. Accounting\"]")
     public WebElement accountName;
 
@@ -23,50 +29,31 @@ public class AddCategoryPage extends BasePage {
     @FindBy(xpath = "//input[@name=\"submit_category\"]")
     public WebElement categorySubmitBtn;
 
-    public AddCategoryPage updateCategory(String username){
-        dashboardPage.switchToPage("Categories");
+    public AddCategoryPage updateCategory(String username) {
 
-        driver.findElement(By.xpath("//a[contains(text(),'"+ username + "')]"));
+        driver.findElement(By.xpath("//a[contains(text(),'" + username + "')]"));
         if (username != null) {
-            driver.findElement(By.xpath("//a[contains(text(),'"+ username + "')]")).click();
+            driver.findElement(By.xpath("//a[contains(text(),'" + username + "')]")).click();
         } else {
             throw new NoSuchElementException("Категория с именем " + username + " не найдена.");
         }
-        addCategoryPage = new AddCategoryPage();
-        addCategoryPage.accountName.clear();
-        webElementActions.sendKeys(addCategoryPage.accountName,randomUserGenerator.randomFirstName());
+
+        this.accountName.clear();
+        webElementActions.sendKeys(this.accountName, RandomUserGenerator.randomFirstName());
         PageFactory.initElements(driver, deleteCategoryPage);
         webElementActions.click(deleteCategoryPage.updateCategoryBtn);
         return new AddCategoryPage();
 
     }
 
-
-
-
-
-
-
-
-
     public AddCategoryPage addNewCategory(String accountName) {
 
         AddCategoryPage addCategoryPage = new AddCategoryPage();
-
-        // Нажимаем на кнопку добавления категории
-        webElementActions.click(dashboardPage.addCategoryBtn);
-
-        // Заполняем поле Account Name (передаем текст в поле accountName)
-        webElementActions.sendKeys(addCategoryPage.accountName, accountName); // Правильный способ
-
-        // Нажимаем на кнопку выбора родительской категории и выбираем нужную категорию
+        webElementActions.click(adminDashboardPage.addCategoryBtn);
+        webElementActions.sendKeys(addCategoryPage.accountName, accountName);
         webElementActions.click(addCategoryPage.parentCategoryBtn).click(iTCategory);
 
-        // Отправляем форму
         webElementActions.click(addCategoryPage.categorySubmitBtn);
-
-        // Возвращаем объект страницы AddCategoryPage
         return addCategoryPage;
     }
-
 }

@@ -9,22 +9,21 @@ import talentLMS.page.login.LoginPage;
 
 import java.time.Duration;
 
-public class UsersTest extends BaseTest{
+public class UsersTest extends BaseTest {
 
     @BeforeClass
-    public void authorization(){
+    public void authorization() {
         driver.get("https://seleniumexplorers.talentlms.com/plus/login?redirect=%2Fdashboard");
-        loginPage.doLogin(ConfigReader.getProperty("userName"), ConfigReader.getProperty("password"))
-                .goToLegacyInterface();
+        loginPage.doLogin(ConfigReader.getProperty("userName"), ConfigReader.getProperty("password"));
     }
 
     @Test
-    public void addNewUserTest(){
+    public void addNewUserTest() {
         addUserPage.addNewUser(randomUser);
     }
 
     @Test
-    public void renameFirstNAme(){
+    public void renameFirstNAme() {
         addUserPage.updateInfoOfUsers("A. Rockhold");
     }
 

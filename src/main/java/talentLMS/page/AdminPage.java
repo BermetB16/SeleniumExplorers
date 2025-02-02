@@ -3,6 +3,7 @@ package talentLMS.page;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import talentLMS.helper.WebElementActions;
+import talentLMS.page.base.BasePage;
 import talentLMS.page.groups.GroupsPage;
 
 public class AdminPage extends BasePage {
@@ -28,32 +29,26 @@ public class AdminPage extends BasePage {
     @FindBy(xpath = "//a[contains(text(),'Reports')]")
     public WebElement reports;
 
+    @FindBy(xpath = "//div[@class='tl-bold-link']//a[contains(text(),'Groups')]")
+    public WebElement groupsBtn;
+
     public AdminPage clickCategoriesTxtLink() {
-       WebElementActions.click(categoriesTxtBtn);
+       webElementActions.click(categoriesTxtBtn);
         return this;
     }
 
     public AdminPage clickCategoriesIconBtn() {
-        WebElementActions.click(categoriesIconBtn);
+        webElementActions.click(categoriesIconBtn);
         return this;
     }
 
     public AdminPage clickLogoutBtn() {
-       WebElementActions.click(logOutBtn);
+       webElementActions.click(logOutBtn);
         return this;
     }
 
-
-
-
-
-
-
-    @FindBy(xpath = "//div[@class='tl-bold-link']//a[contains(text(),'Groups')]")
-    public WebElement groupsBtn;
-
     public AdminPage clickGroupsBtn() {
-        WebElementActions.click(groupsBtn);
+        webElementActions.click(groupsBtn);
         return this;
 
     }
