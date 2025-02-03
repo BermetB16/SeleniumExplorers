@@ -4,11 +4,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import talentLMS.entity.Course;
 import talentLMS.page.base.BasePage;
-import talentLMS.page.dashboard.AdminDashboardPage;
 
 public class AddCoursePage extends BasePage {
-
-    AdminDashboardPage adminDashboard = new AdminDashboardPage();
 
     @FindBy(xpath = "//div[@class='controls']/div[@class='input-append tl-countdown']/input[@name='name']")
     public WebElement courseNameField;
@@ -28,13 +25,13 @@ public class AddCoursePage extends BasePage {
     @FindBy(css = "#tl-confirm-submit")
     public WebElement deleteButton;
 
-
-    public AddCoursePage addCourse(Course course){
-        webElementActions.click(adminDashboard.addCourseButton)
-                .sendKeys(courseNameField, course.getCourseName())
-                .sendKeys(courseCategoryField,course.getCourseCategoryName())
-                .sendKeys(descriptionField, course.getDescription())
-                .click(saveAndSelectUsersButton);
-        return this;
-    }
+//
+//    public AddCoursePage addCourse(Course course){
+//        webElementActions.click(adminDashboard.addCourseButton)
+//                .sendKeys(courseNameField, course.getCourseName())
+//                .sendKeys(courseCategoryField,course.getCourseCategoryName())
+//                .sendKeys(descriptionField, course.getDescription())
+//                .click(saveAndSelectUsersButton);
+//        return this;
+//    }
 }

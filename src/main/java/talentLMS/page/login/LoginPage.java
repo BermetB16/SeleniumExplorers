@@ -13,9 +13,9 @@ public class LoginPage extends BasePage {
     public WebElement password;
 
     @FindBy(xpath = "//button[@type=\"submit\"]")
-    public WebElement login;
+    public WebElement loginBtn;
 
-    @FindBy(css = "login-error-container")
+    @FindBy(css = ".login-error-container")
     public WebElement loginErrorContainer;
 
     @FindBy(xpath = "//div[@data-testid='username-error']")
@@ -27,6 +27,6 @@ public class LoginPage extends BasePage {
     public void doLogin(String username, String password) {
         webElementActions.sendKeys(this.username, username)
                 .sendKeys(this.password, password)
-                .click(login);
+                .click(loginBtn);
     }
 }

@@ -1,7 +1,9 @@
+package talentLMS.login;
+
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import talentLMS.base.BaseTest;
 import talentLMS.fileUtils.ConfigReader;
 
 import static org.testng.Assert.assertEquals;
@@ -9,16 +11,18 @@ import static org.testng.Assert.assertTrue;
 
 public class LoginTest extends BaseTest {
 
-    @BeforeTest
+    @BeforeClass
     void setUp() {
-        browserManager.openURL("https://seleniumexplorers.talentlms.com/plus/login?redirect=%2Fdashboard");
+        browserManager.openURL("https://seleniumexplorers.talentlms.com/plus/login");
     }
 
     @Test
     public void testLogin() {
         loginPage.doLogin(ConfigReader.getProperty("userName"), ConfigReader.getProperty("password"));
 
-        assertTrue(webElementActions.isDisplayed(adminDashboardNewInterfacePage.profileMenuButton));
+        assertTrue(webElementActions.isDisplayed(adminDashboardModernPage.profileMenuButton));
+
+        adminDashboardModernPage.logOut();
     }
 
     @Test
@@ -36,12 +40,14 @@ public class LoginTest extends BaseTest {
         assertTrue(webElementActions.isDisplayed(loginPage.userNameError));
         assertTrue(webElementActions.isDisplayed(loginPage.passwordError));
 
-        assertEquals(loginPage.userNameError.getText(), "This is a required field");
-        assertEquals(loginPage.passwordError.getText(), "This is a required field");
+        String errorMessage = "This is a required field";
+
+        assertEquals(loginPage.userNameError.getText(), errorMessage);
+        assertEquals(loginPage.passwordError.getText(), errorMessage);
     }
 
     @AfterMethod
     public void tearDown() {
-        browserManager.back();
+        browserManager.refresh();
     }
 }

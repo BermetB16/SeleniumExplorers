@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import talentLMS.page.base.BasePage;
-import talentLMS.page.dashboard.AdminDashboardPage;
+import talentLMS.page.dashboard.legacy.AdminDashboardPage;
 import talentLMS.utils.randomEntityUtils.RandomUserGenerator;
 
 public class AddCategoryPage extends BasePage {
@@ -45,15 +45,15 @@ public class AddCategoryPage extends BasePage {
         return new AddCategoryPage();
 
     }
-
-    public AddCategoryPage addNewCategory(String accountName) {
-
-        AddCategoryPage addCategoryPage = new AddCategoryPage();
-        webElementActions.click(adminDashboardPage.addCategoryBtn);
-        webElementActions.sendKeys(addCategoryPage.accountName, accountName);
-        webElementActions.click(addCategoryPage.parentCategoryBtn).click(iTCategory);
-
-        webElementActions.click(addCategoryPage.categorySubmitBtn);
-        return addCategoryPage;
-    }
+//
+//    public AddCategoryPage addNewCategory(String accountName) {
+//
+//        AddCategoryPage addCategoryPage = new AddCategoryPage();
+//        webElementActions.click(adminDashboardPage.addCategoryBtn);
+//        webElementActions.sendKeys(addCategoryPage.accountName, accountName);
+//        webElementActions.click(addCategoryPage.parentCategoryBtn).click(iTCategory);
+//
+//        webElementActions.click(addCategoryPage.categorySubmitBtn);
+//        return addCategoryPage;
+//    }
 }

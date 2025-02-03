@@ -14,6 +14,10 @@ public class BrowserManager {
         driver.navigate().to(URL);
     }
 
+    public void refresh() {
+        driver.navigate().refresh();
+    }
+
     public void back() {
         driver.navigate().back();
     }
