@@ -7,9 +7,8 @@ import org.openqa.selenium.edge.EdgeDriver;
 import java.time.Duration;
 
 public class EdgeWebDriver {
-    public WebDriver driver;
 
-    public static WebDriver loadFromDriver(){
+    public static WebDriver loadFromDriver() {
         WebDriverManager.edgedriver().setup();
         WebDriver driver = new EdgeDriver();
         driver.manage().window().maximize();

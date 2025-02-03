@@ -2,15 +2,9 @@ package talentLMS.page.groups;
 
 
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import talentLMS.helper.WebElementActions;
-import talentLMS.page.BasePage;
-
-import java.time.Duration;
+import talentLMS.page.base.BasePage;
 
 public class GroupsPage extends BasePage {
 

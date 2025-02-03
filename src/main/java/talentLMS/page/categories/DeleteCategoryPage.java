@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import talentLMS.page.BasePage;
+import talentLMS.page.base.BasePage;
 
 public class DeleteCategoryPage extends BasePage {
 
@@ -21,7 +21,6 @@ public class DeleteCategoryPage extends BasePage {
     public WebElement updateCategoryBtn;
 
     public DeleteCategoryPage deleteCategory(String categoryName){
-        dashboardPage.switchToPage("Categories");
         driver.findElement(By.xpath("//a[contains(text(),'"+ categoryName + "')]"));
         if (categoryName != null) {
             driver.findElement(By.xpath("//a[contains(text(),'"+ categoryName + "')]")).click();

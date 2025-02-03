@@ -9,11 +9,11 @@ public class RandomCourseGenerator {
 
     Faker faker = new Faker(new Locale("en"));
 
-    public String randomCourseName(){
+    public String randomCourseName() {
         return faker.educator().course();
     }
 
-    public String randomCourseCategory(){
+    public String randomCourseCategory() {
         // Генерация случайного типа курса (например, предметные области)
         String[] courseCategories = {
                 "Finance",
@@ -32,11 +32,11 @@ public class RandomCourseGenerator {
 
     }
 
-    public String randomDescription(){
+    public String randomDescription() {
         return faker.lorem().paragraph();
     }
 
-    public Course randomCourse(){
-        return new Course(randomCourseName(),randomCourseCategory(),randomDescription());
+    public Course randomCourse() {
+        return new Course(randomCourseName(), randomCourseCategory(), randomDescription());
     }
 }
