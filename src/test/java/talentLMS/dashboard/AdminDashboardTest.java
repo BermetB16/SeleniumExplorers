@@ -29,4 +29,10 @@ public class AdminDashboardTest extends BaseTest {
         assertTrue(webElementActions.isDisplayed(adminDashboardPage.reports));
         assertTrue(webElementActions.isDisplayed(adminDashboardPage.accountSettings));
     }
+
+    @Test
+    public void testAddUser() {
+        webElementActions.click(adminDashboardPage.usersAddUserLink);
+        assertTrue(webElementActions.isDisplayed(adminDashboardPage.users));
+    }
 }
