@@ -14,14 +14,14 @@ public class UsersTest extends BaseTest {
         adminDashboardModernPage.goToLegacyInterface();
     }
 
-//    @Test
-//    public void addNewUserTest() {
-//        addUserPage.addNewUser(randomUser);
-//    }
+    @Test
+    public void addNewUserTest() {
+        addUserPage.addNewUser(randomUser);
+    }
 
     @Test
     public void renameFirstNAme() {
-        addUserPage.updateInfoOfUsers("A. Rockhold");
+        addUserPage.updateInfoOfUsers("B. Welch");
     }
 
 

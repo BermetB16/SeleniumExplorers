@@ -3,6 +3,7 @@ package talentLMS.page;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import talentLMS.helper.WebElementActions;
+import talentLMS.page.base.BasePage;
 import talentLMS.page.groups.GroupsPage;
 
 public class AdminPage extends BasePage {
