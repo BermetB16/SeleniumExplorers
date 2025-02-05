@@ -19,6 +19,10 @@ public class BasePage {
         PageFactory.initElements(driver, this);
         actions = new Actions(driver);
         webElementActions = new WebElementActions(driver, actions);
-        browserManager = new BrowserManager(driver);
+        browserManager = new BrowserManager();
+    }
+
+    public BasePage(WebDriver driver) {
+        this.driver = driver;
     }
 }

@@ -44,7 +44,7 @@ public abstract class BaseTest {
         driver = Driver.getDriver();
         actions = new Actions(driver);
         webElementActions = new WebElementActions(driver, actions);
-        browserManager = new BrowserManager(driver);
+        browserManager = new BrowserManager();
     }
 
     @AfterSuite

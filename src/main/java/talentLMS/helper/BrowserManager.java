@@ -6,7 +6,7 @@ public class BrowserManager {
 
     private WebDriver driver;
 
-    public BrowserManager(WebDriver driver) {
+    public BrowserManager() {
         this.driver = driver;
     }
 

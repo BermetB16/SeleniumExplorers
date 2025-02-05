@@ -1,5 +1,6 @@
 package talentLMS.page.dashboard.legacy;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import talentLMS.page.base.BasePage;
@@ -35,4 +36,14 @@ public class AdminDashboardPage extends BasePage {
 
     @FindBy(xpath = "//div[@class='tl-bold-link']/a[normalize-space()= 'Account & Settings']")
     public WebElement accountSettings;
+
+    public AdminDashboardPage(WebDriver driver) {
+        this.driver = driver;
+
+    }
+
+    public AdminDashboardPage() {
+        System.out.println("Административная панель загружена.");
+
+    }
 }
