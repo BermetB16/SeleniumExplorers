@@ -47,6 +47,9 @@ public class AddCategoryPage extends BasePage {
     @FindBy(xpath = "//div[contains(text(),\"Category updated successfully\")]")
     public WebElement categoryUpdatedMsg;
 
+    @FindBy(xpath = "//a[@href=\"https://seleniumexplorers.talentlms.com/category/index\"]")
+    public WebElement cancelCategoryBtn;
+
     public AddCategoryPage editCategory(String username) {
         driver.findElement(By.xpath("//a[contains(text(),'" + username + "')]"));
         if (username != null) {
@@ -69,6 +72,16 @@ public class AddCategoryPage extends BasePage {
         webElementActions.sendKeys(this.categoryPrice, String.valueOf(categoryPrice));
         webElementActions.click(parentCategoryBtn).click(iTCategory);
         webElementActions.click(categorySubmitBtn);
+        return new AddCategoryPage();
+    }
+
+    public AddCategoryPage cancelCategory(String categoryName, int categoryPrice){
+        webElementActions.click(addCategoryBtn);
+        webElementActions.sendKeys(this.categoryName, categoryName);
+        webElementActions.click(categoryPriceBtn);
+        webElementActions.sendKeys(this.categoryPrice, String.valueOf(categoryPrice));
+        webElementActions.click(parentCategoryBtn).click(iTCategory);
+        webElementActions.click(cancelCategoryBtn);
         return new AddCategoryPage();
     }
 

@@ -54,4 +54,11 @@ public class CategoryTest extends BaseTest {
         addCategoryPage.editCategory(categoryName);
         Assert.assertTrue(addCategoryPage.getCategorySuccessUpdateMessage().contains("Category updated successfully"));
     }
+
+    @Test
+    public void cancelNewCategoryTest(){
+        addCategoryPage.cancelCategory(categoryName, categoryPrice);
+        Assert.assertFalse(deleteCategoryPage.isCategoryPresent(categoryName), "Category should not be present after deletion");
+        System.out.println("New category was SUCCESSFULLY CANCELED!!!");
+    }
 }
