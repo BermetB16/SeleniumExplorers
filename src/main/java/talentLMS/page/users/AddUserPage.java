@@ -14,58 +14,59 @@ import java.util.Random;
 
 public class AddUserPage extends BasePage {
 
-    AdminDashboardPage adminDashboardPage = new AdminDashboardPage();
-    @FindBy(css = "div.btn-group > a.btn.btn-primary[href*='/user/create'")
-    public WebElement addUserButton;
+    @FindBy(xpath = "//div[@class=\"tl-title tl-ellipsis\" and normalize-space(text())='Add user']")
+    public WebElement addUserHeadText;
+
+    @FindBy(xpath = "//div[@class='toast-message' and text()='User details updated successfully']")
+    public WebElement successfulUserUpdateText;
 
     @FindBy(xpath = "//input[@name = 'name']")
     public WebElement firstName;
+    @FindBy(xpath = "//span[@class='help-inline' and text()=\"'First name' is required\"]")
+    public WebElement firstNameIsRequiredText;
+
     @FindBy(xpath = "//input[@name = 'surname']")
     public WebElement lastName;
+    @FindBy(xpath = "//span[@class='help-inline' and text()=\"'Last name' is required\"]")
+    public WebElement lastNameIsRequiredText;
+
     @FindBy(xpath = "//input[@name = 'email']")
     public WebElement email;
+    @FindBy(xpath = "//span[@class='help-inline' and text()=\\\"'Email address' is required\\\"]")
+    public WebElement emailAddressIsRequiredText;
+    @FindBy(xpath = "//span[@class='help-inline' and text()=\\\"This is not a valid 'Email address'\\\"]")
+    public WebElement notValidEmailAddressText;
+
     @FindBy(xpath = "//input[@name='login']")
     public WebElement username;
+    @FindBy(xpath = "//span[@class='help-inline' and text()=\\\"'Last name' is required\\\"]")
+    public WebElement usernameIsRequiredText;
+
     @FindBy(xpath = "//input[@name = 'password']")
     public WebElement password;
-    @FindBy(xpath = "//span[text()='Trainer-Type']/ancestor::a[contains(@class, 'select2-choice')]")
-    public WebElement userTypeButton;
+
+    @FindBy(xpath = "//span[text()='Learner-Type' or text()='SuperAdmin' or text()='Trainer-Type' or text()='Admin-Type']/ancestor::a[contains(@class, 'select2-choice')]")
+    public WebElement userTypeField;
+
     @FindBy(name = "acl_user_type_id")
     public WebElement userTypeOptions;
+
+    @FindBy(xpath = "//span[contains(text(), \"GMT\")]/ancestor::a[contains(@class, 'select2-choice')]")
+    public WebElement timeZoneField;
+
+    @FindBy(xpath = "//select[@name='timezone']")
+    public WebElement timeZoneOptions;
+
+    @FindBy(xpath = "//label[@class='control-label' and text()='Language']/following::a[@class='select2-choice']")
+    public WebElement languageField;
+
+    @FindBy(xpath = "//select[@name='language' and @class='tl-select2 select2-offscreen']")
+    public WebElement languageOptions;
+
     @FindBy(xpath = "//input[@name ='submit_personal_details']")
-    public WebElement addUserSubmitButton;
+    public WebElement userSubmitButton;
 
+    @FindBy(css = "div.toast-message")
+    public WebElement usersLimitText;
 
-    public AddUserPage addNewUser(User user) {
-        webElementActions.click(adminDashboardPage.users)
-                .click(addUserButton)
-                .sendKeys(firstName, user.getFirstName())
-                .sendKeys(lastName, user.getLastName())
-                .sendKeys(email, user.getEmail())
-                .sendKeys(username, user.getUserName())
-                .sendKeys(password, RandomUserGenerator.generateStrongPassword(10))
-                .click(addUserSubmitButton);
-        return this;
-    }
-
-    public AddUserPage updateInfoOfUsers(String username) {
-        driver.findElement(By.xpath("//tr[@role='row']/td/a/span[text()='" + username + "']")).click();
-        firstName.clear();
-        lastName.clear();
-        webElementActions.sendKeys(firstName, RandomUserGenerator.randomFirstName())
-                .sendKeys(lastName,RandomUserGenerator.randomLastName())
-                .click(userTypeOptions);
-        Select select = new Select(userTypeOptions);
-        // Получаем все доступные опции
-        List<WebElement> options = select.getOptions();
-
-        // Генерируем случайный индекс
-        Random random = new Random();
-        int randomIndex = random.nextInt(options.size());  // Генерирует от 0 до (размер списка - 1)
-
-        // Выбираем случайный элемент
-        select.selectByIndex(randomIndex);
-//                .click(addUserSubmitButton);
-        return this;
-    }
 }
