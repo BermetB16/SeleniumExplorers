@@ -14,9 +14,6 @@ public class DeleteCategoryPage extends BasePage {
      @FindBy(xpath = "//a[@id=\"tl-confirm-submit\"]")
     public WebElement finalDeleteCategoryBtn;
 
-     @FindBy(xpath = "//input[@value=\"Update category\"]")
-    public WebElement updateCategoryBtn;
-
     public DeleteCategoryPage deleteCategory(String categoryName){
         driver.findElement(By.xpath("//a[contains(text(),'"+ categoryName + "')]"));
         if (categoryName != null) {

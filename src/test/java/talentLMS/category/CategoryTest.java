@@ -36,9 +36,8 @@ public class CategoryTest extends BaseTest {
     @Test
     public void addEmptyCategoryTest(){
         addCategoryPage.addNewCategory("", 0);
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement errorMessageElement = wait.until(ExpectedConditions.visibilityOf(addCategoryPage.errorNameRequired));
-        String actualErrorMessage = errorMessageElement.getText();
+        Assert.assertTrue(webElementActions.isDisplayed(addCategoryPage.errorNameRequired));
+        String actualErrorMessage = addCategoryPage.errorNameRequired.getText();
         String expectedErrorMessage = "'Name' is required";
         Assert.assertEquals(expectedErrorMessage, actualErrorMessage, "Error message text does not match");
     }

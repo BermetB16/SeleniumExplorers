@@ -47,6 +47,9 @@ public class AddCategoryPage extends BasePage {
     @FindBy(xpath = "//div[contains(text(),\"Category updated successfully\")]")
     public WebElement categoryUpdatedMsg;
 
+    @FindBy(xpath = "//input[@value=\"Update category\"]")
+    public WebElement updateCategoryBtn;
+
     public AddCategoryPage editCategory(String username) {
         driver.findElement(By.xpath("//a[contains(text(),'" + username + "')]"));
         if (username != null) {
@@ -56,19 +59,18 @@ public class AddCategoryPage extends BasePage {
         }
 
         this.categoryName.clear();
-        webElementActions.sendKeys(this.categoryName, RandomUserGenerator.randomFirstName());
-        PageFactory.initElements(driver, deleteCategoryPage);
-        webElementActions.click(deleteCategoryPage.updateCategoryBtn);
+        webElementActions.sendKeys(this.categoryName, RandomUserGenerator.randomFirstName())
+                .click(updateCategoryBtn);
         return new AddCategoryPage();
     }
 
     public AddCategoryPage addNewCategory(String categoryName, int categoryPrice) {
-        webElementActions.click(addCategoryBtn);
-        webElementActions.sendKeys(this.categoryName, categoryName);
-        webElementActions.click(categoryPriceBtn);
-        webElementActions.sendKeys(this.categoryPrice, String.valueOf(categoryPrice));
-        webElementActions.click(parentCategoryBtn).click(iTCategory);
-        webElementActions.click(categorySubmitBtn);
+        webElementActions.click(addCategoryBtn)
+                .sendKeys(this.categoryName, categoryName)
+                .click(categoryPriceBtn)
+                .sendKeys(this.categoryPrice, String.valueOf(categoryPrice))
+                .click(parentCategoryBtn).click(iTCategory)
+                .click(categorySubmitBtn);
         return new AddCategoryPage();
     }
 
