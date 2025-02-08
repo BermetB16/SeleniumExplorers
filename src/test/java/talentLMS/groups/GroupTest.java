@@ -25,7 +25,7 @@ public class GroupTest extends BaseTest {
 //                .clickSaveGroup();
 //
 //
-//        Assert.assertTrue(groupsPage.getSuccessMessage().contains("successfully created"));
+//        Assert.assertTrue(groupsPage.getCategorySuccessMessage().contains("successfully created"));
 //    }
 //
 //    @Test
@@ -42,7 +42,7 @@ public class GroupTest extends BaseTest {
 //                .enterGroupName("Updated Group Name")
 //                .clickSaveGroup();
 //
-//        Assert.assertTrue(groupsPage.getSuccessMessage().contains("successfully updated"));
+//        Assert.assertTrue(groupsPage.getCategorySuccessMessage().contains("successfully updated"));
 //    }
 
     @Test
@@ -55,6 +55,6 @@ public class GroupTest extends BaseTest {
 //        groupsPage.clickDeleteGroup();
 //        groupsPage.confirmDelete();
 //
-//        Assert.assertTrue(groupsPage.getSuccessMessage().contains("successfully deleted"));
+//        Assert.assertTrue(groupsPage.getCategorySuccessMessage().contains("successfully deleted"));
     }
 }

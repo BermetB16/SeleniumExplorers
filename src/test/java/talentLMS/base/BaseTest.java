@@ -7,6 +7,7 @@ import talentLMS.entity.Course;
 import talentLMS.entity.User;
 import talentLMS.helper.BrowserManager;
 import talentLMS.helper.WebElementActions;
+import talentLMS.page.base.PageNavigator;
 import talentLMS.page.courses.AddCoursePage;
 import talentLMS.page.dashboard.modern.AdminDashboardModernPage;
 import talentLMS.page.dashboard.legacy.AdminDashboardPage;
@@ -25,6 +26,7 @@ public abstract class BaseTest {
     public Actions actions;
     public WebElementActions webElementActions;
     public BrowserManager browserManager;
+    public PageNavigator pageNavigator;
 
     public LoginPage loginPage = new LoginPage();
     public AdminDashboardPage adminDashboardPage = new AdminDashboardPage();
@@ -45,6 +47,7 @@ public abstract class BaseTest {
         actions = new Actions(driver);
         webElementActions = new WebElementActions(driver, actions);
         browserManager = new BrowserManager(driver);
+        pageNavigator = new PageNavigator();
     }
 
     @AfterSuite
