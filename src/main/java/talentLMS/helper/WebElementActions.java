@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import talentLMS.driver.Driver;
 
 import java.time.Duration;
 
@@ -77,8 +78,31 @@ public class WebElementActions {
         return element.isDisplayed();
     }
 
+    public boolean isEnabled(WebElement element) {
+       waitBtnToBeClickable(element);
+        return element.isEnabled();
+    }
+
     public String getText(WebElement element) {
         waitElementToBeDisplayed(element);
         return element.getText();
+    }
+
+    public WebElementActions scrollToElement(WebElement element) {
+        JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
+        js.executeScript("arguments[0].scrollIntoView(true);", element);
+        return this;
+    }
+
+    public WebElementActions jsClick(WebElement element) {
+        JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
+        js.executeScript("arguments[0].click();", element);
+        return this;
+    }
+
+    public WebElementActions jsSendKeys(WebElement element, String txt) {
+        JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
+        js.executeScript("arguments[0].value=arguments[1];", element, txt);
+        return this;
     }
 }

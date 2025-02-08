@@ -14,19 +14,19 @@ public class RandomUserGenerator {
         return faker.name().fullName();
     }
 
-    public String randomLastName() {
+    public static String randomLastName() {
         return faker.name().lastName();
     }
 
-    public String randomEmail() {
+    public static String randomEmail() {
         return faker.internet().emailAddress();
     }
 
-    public String randomUserName() {
+    public static String randomUserName() {
         return faker.name().username();
     }
 
-    public User randomUser() {
+    public static User randomUser() {
         return new User(randomFirstName(), randomLastName(), randomUserName(), randomEmail());
     }
 
