@@ -44,6 +44,9 @@ public class AddCategoryPage extends BasePage {
     @FindBy(xpath = "//div[@class=\"toast-message\"]")
     public WebElement successMessage;
 
+    @FindBy(xpath = "//div[contains(text(),\"Success! New category created.\")]")
+    public WebElement categoryCreatedMsg;
+
     @FindBy(xpath = "//div[contains(text(),\"Category updated successfully\")]")
     public WebElement categoryUpdatedMsg;
 
@@ -51,11 +54,11 @@ public class AddCategoryPage extends BasePage {
     public WebElement cancelCategoryBtn;
 
     public AddCategoryPage editCategory(String username) {
-        driver.findElement(By.xpath("//a[contains(text(),'" + username + "')]"));
+        WebElement xpath = driver.findElement(By.xpath("//a[contains(text(),'" + username + "')]"));
         if (username != null) {
-            driver.findElement(By.xpath("//a[contains(text(),'" + username + "')]")).click();
+            xpath.click();
         } else {
-            throw new NoSuchElementException("Category with \'" + username + "\'- name is not found.");
+            throw new NoSuchElementException("Category with \"" + username + "\"- name is not found.");
         }
 
         this.categoryName.clear();
@@ -66,22 +69,22 @@ public class AddCategoryPage extends BasePage {
     }
 
     public AddCategoryPage addNewCategory(String categoryName, int categoryPrice) {
-        webElementActions.click(addCategoryBtn);
-        webElementActions.sendKeys(this.categoryName, categoryName);
-        webElementActions.click(categoryPriceBtn);
-        webElementActions.sendKeys(this.categoryPrice, String.valueOf(categoryPrice));
-        webElementActions.click(parentCategoryBtn).click(iTCategory);
-        webElementActions.click(categorySubmitBtn);
+        webElementActions.click(addCategoryBtn)
+                         .sendKeys(this.categoryName, categoryName)
+                         .click(categoryPriceBtn)
+                         .sendKeys(this.categoryPrice, String.valueOf(categoryPrice))
+                         .click(parentCategoryBtn).click(iTCategory)
+                         .click(categorySubmitBtn);
         return new AddCategoryPage();
     }
 
-    public AddCategoryPage cancelCategory(String categoryName, int categoryPrice){
-        webElementActions.click(addCategoryBtn);
-        webElementActions.sendKeys(this.categoryName, categoryName);
-        webElementActions.click(categoryPriceBtn);
-        webElementActions.sendKeys(this.categoryPrice, String.valueOf(categoryPrice));
-        webElementActions.click(parentCategoryBtn).click(iTCategory);
-        webElementActions.click(cancelCategoryBtn);
+    public AddCategoryPage cancelCategory(String categoryName, int categoryPrice) {
+        webElementActions.click(addCategoryBtn)
+                         .sendKeys(this.categoryName, categoryName)
+                         .click(categoryPriceBtn)
+                         .sendKeys(this.categoryPrice, String.valueOf(categoryPrice))
+                         .click(parentCategoryBtn).click(iTCategory)
+                         .click(cancelCategoryBtn);
         return new AddCategoryPage();
     }
 
@@ -89,7 +92,11 @@ public class AddCategoryPage extends BasePage {
         return webElementActions.getText(successMessage);
     }
 
-    public String getCategorySuccessUpdateMessage(){
-        return webElementActions.getText(categoryUpdatedMsg);
+    public boolean getCategorySuccessCreatedMessage() {
+        return webElementActions.isDisplayed(categoryCreatedMsg);
+    }
+
+    public boolean getCategorySuccessUpdatedMessage() {
+        return webElementActions.isDisplayed(categoryUpdatedMsg);
     }
 }

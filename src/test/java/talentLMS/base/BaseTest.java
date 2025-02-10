@@ -8,6 +8,7 @@ import talentLMS.entity.User;
 import talentLMS.helper.BrowserManager;
 import talentLMS.helper.WebElementActions;
 import talentLMS.page.base.PageNavigator;
+import talentLMS.page.branches.PlayBranchesPage;
 import talentLMS.page.courses.AddCoursePage;
 import talentLMS.page.dashboard.modern.AdminDashboardModernPage;
 import talentLMS.page.dashboard.legacy.AdminDashboardPage;
@@ -35,6 +36,7 @@ public abstract class BaseTest {
     public AddCoursePage addCoursePage = new AddCoursePage();
     public DeleteCategoryPage deleteCategoryPage = new DeleteCategoryPage();
     public AddCategoryPage addCategoryPage = new AddCategoryPage();
+    public PlayBranchesPage playBranchesPage = new PlayBranchesPage();
 
     public RandomUserGenerator randomUserGenerator = new RandomUserGenerator();
     public User randomUser = randomUserGenerator.randomUser();

@@ -18,15 +18,14 @@ public class DeleteCategoryPage extends BasePage {
     public WebElement updateCategoryBtn;
 
     public DeleteCategoryPage deleteCategory(String categoryName){
-        driver.findElement(By.xpath("//a[contains(text(),'"+ categoryName + "')]"));
+        WebElement xpath = driver.findElement(By.xpath("//a[contains(text(),'"+ categoryName + "')]"));
         if (categoryName != null) {
-            driver.findElement(By.xpath("//a[contains(text(),'"+ categoryName + "')]")).click();
+           xpath.click();
         } else {
             throw new NoSuchElementException("Категория с именем " + categoryName + " не найдена.");
         }
         webElementActions.click(deleteCategoryBtn)
                           .click(finalDeleteCategoryBtn);
-
         return this;
     }
 
