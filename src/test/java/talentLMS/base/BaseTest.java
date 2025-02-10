@@ -8,11 +8,13 @@ import talentLMS.entity.Course;
 import talentLMS.entity.User;
 import talentLMS.helper.BrowserManager;
 import talentLMS.helper.WebElementActions;
+import talentLMS.page.base.PageNavigator;
 import talentLMS.page.courses.AddCoursePage;
 import talentLMS.page.courses.CoursePage;
 import talentLMS.page.courses.EditCoursePage;
 import talentLMS.page.dashboard.modern.AdminDashboardModernPage;
 import talentLMS.page.dashboard.legacy.AdminDashboardPage;
+import talentLMS.page.groups.GroupsPage;
 import talentLMS.page.login.LoginPage;
 import talentLMS.page.categories.AddCategoryPage;
 import talentLMS.page.reports.coursesReports.CourseInfoReportPage;
@@ -60,6 +62,8 @@ public abstract class BaseTest {
     public User randomUser = randomUserGenerator.randomUser();
     public RandomCourseGenerator randomCourseGenerator = new RandomCourseGenerator();
     public Course randomCourse = randomCourseGenerator.randomCourse();
+    public GroupsPage groupsPage = new GroupsPage();
+    public PageNavigator pageNavigator = new PageNavigator();
 
     @BeforeSuite
     public void beforeSuite() {
