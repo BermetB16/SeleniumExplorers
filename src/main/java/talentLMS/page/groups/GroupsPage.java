@@ -10,9 +10,6 @@ import java.util.List;
 
 public class GroupsPage extends BasePage {
 
-    @FindBy(xpath = "//a[contains(text(),'Add group')]")
-    public WebElement addGroupBtn;
-
     @FindBy(xpath = "//input[@name='name']")
     public WebElement groupNameField;
 
@@ -54,8 +51,6 @@ public class GroupsPage extends BasePage {
     public WebElement CourseGroupMemberText;
     @FindBy(xpath = "//a[@href=\"https://seleniumexplorers.talentlms.com/group/course/id:105\"]")
     public WebElement courseButton;
-
-
     @FindBy(xpath = "(//a[contains(text(), 'Groups')])[1]")
     public WebElement groupsBtnOnHomePage;
     @FindBy(xpath = "//a[@title='Groups']")
@@ -72,15 +67,11 @@ public class GroupsPage extends BasePage {
     public WebElement inputPriceOfGroup;
     @FindBy(xpath = "//div[@class='toast-message']")
     public WebElement textOfSuccsefullyAddedGroup;
-
     @FindBy(xpath = "//button[@class='back-button']")
     public WebElement backButton;
 
 
-    public GroupsPage clickAddGroup() {
-        webElementActions.click(addGroupBtn);
-        return this;
-    }
+
 
     public GroupsPage clickAddGroupHome(){
         webElementActions.click(addGroupHome);
@@ -110,9 +101,6 @@ public class GroupsPage extends BasePage {
         groupMemberText.click();
         return this;
     }
-
-
-
     public GroupsPage clickSaveGroup() {
         webElementActions.click(saveGroupBtn);
         return this;
@@ -140,14 +128,17 @@ public class GroupsPage extends BasePage {
         return this;
     }
     public GroupsPage clickCourseButton() {
-        webElementActions.click(courseButton);
+        webElementActions.click(coursesTab);
         return this;
     }
     public GroupsPage enterGroupKeyButton(String groupKey) {
         webElementActions.click(groupKeyBtn);
         return this;
     }
-
+    public GroupsPage groupButtonOnHomePage() {
+        webElementActions.click(groupsBtnOnHomePage);
+        return this;
+    }
     public String getSuccessMessage() {
         return webElementActions.getText(successMessage);
     }
