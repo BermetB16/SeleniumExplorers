@@ -1,12 +1,12 @@
 package talentLMS.helper;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import talentLMS.driver.Driver;
 
 import java.time.Duration;
 
@@ -27,10 +27,10 @@ public class WebElementActions {
     }
 
     public WebElementActions waitElementToBeDisplayed(WebElement element) {
-        new WebDriverWait(driver, Duration.ofSeconds(15));
+        new WebDriverWait(driver, Duration.ofSeconds(15))
+                .until(ExpectedConditions.visibilityOf(element));
         return this;
     }
-
 
     public WebElementActions click(WebElement element) {
         waitElementToBeDisplayed(element);
@@ -55,6 +55,7 @@ public class WebElementActions {
     }
 
     public WebElementActions moveToElement(WebElement element) {
+        waitElementToBeDisplayed(element);
         actions.moveToElement(element).perform();
         return this;
     }
@@ -77,12 +78,31 @@ public class WebElementActions {
         return element.isDisplayed();
     }
 
+    public boolean isEnabled(WebElement element) {
+       waitBtnToBeClickable(element);
+        return element.isEnabled();
+    }
+
     public String getText(WebElement element) {
         waitElementToBeDisplayed(element);
         return element.getText();
     }
 
+    public WebElementActions scrollToElement(WebElement element) {
+        JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
+        js.executeScript("arguments[0].scrollIntoView(true);", element);
+        return this;
+    }
+
+    public WebElementActions jsClick(WebElement element) {
+        JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
+        js.executeScript("arguments[0].click();", element);
+        return this;
+    }
+
+    public WebElementActions jsSendKeys(WebElement element, String txt) {
+        JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
+        js.executeScript("arguments[0].value=arguments[1];", element, txt);
+        return this;
+    }
 }
-
-
-
