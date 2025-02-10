@@ -1,5 +1,6 @@
 package talentLMS.helper;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -26,10 +27,10 @@ public class WebElementActions {
     }
 
     public WebElementActions waitElementToBeDisplayed(WebElement element) {
-        new WebDriverWait(driver, Duration.ofSeconds(15))
-                .until(ExpectedConditions.visibilityOf(element));
+        new WebDriverWait(driver, Duration.ofSeconds(15));
         return this;
     }
+
 
     public WebElementActions click(WebElement element) {
         waitElementToBeDisplayed(element);
@@ -54,7 +55,6 @@ public class WebElementActions {
     }
 
     public WebElementActions moveToElement(WebElement element) {
-        waitElementToBeDisplayed(element);
         actions.moveToElement(element).perform();
         return this;
     }
@@ -81,4 +81,8 @@ public class WebElementActions {
         waitElementToBeDisplayed(element);
         return element.getText();
     }
+
 }
+
+
+

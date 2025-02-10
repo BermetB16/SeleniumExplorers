@@ -1,6 +1,7 @@
 package talentLMS.page.base;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import talentLMS.driver.Driver;
@@ -21,4 +22,6 @@ public class BasePage {
         webElementActions = new WebElementActions(driver, actions);
         browserManager = new BrowserManager(driver);
     }
+
+
 }
