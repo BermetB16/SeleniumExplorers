@@ -17,4 +17,8 @@ public enum Role {
     Role(String xPath) {
         this.xPath = xPath;
     }
+
+    public String getXPath(String xPath) {
+        return String.valueOf(compareTo(Role.valueOf(getXPath(this.xPath))));
+    }
 }

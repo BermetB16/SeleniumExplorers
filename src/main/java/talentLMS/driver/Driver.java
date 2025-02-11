@@ -5,7 +5,7 @@ import talentLMS.fileUtils.ConfigReader;
 
 public class Driver {
 
-    private static WebDriver driver;
+    public static WebDriver driver;
 
     private Driver() {
         // singleton pattern

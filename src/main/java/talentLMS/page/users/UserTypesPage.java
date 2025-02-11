@@ -37,13 +37,6 @@ public class UserTypesPage extends BasePage {
     @FindBy(xpath = "//input[@name ='submit_personal_details']")
     public WebElement addUserSubmitButton;
 
-    public UserTypesPage(WebDriver driver) {
-        super(driver);
-        this.driver = driver;
-        this.dashboardPage = new AdminDashboardPage(driver);
-        PageFactory.initElements(driver, this);
-    }
-
     public UserTypesPage selectUserType(String userType) {
         Select dropdown = new Select(userTypeDropdown);
         dropdown.selectByVisibleText(userType);
@@ -56,5 +49,8 @@ public class UserTypesPage extends BasePage {
         webElementActions.sendKeys(firstName, RandomUserGenerator.randomFirstName())
                 .click(addUserSubmitButton);
         return this;
+    }
+
+    public void deleteUserCredentials(String username) {
     }
 }

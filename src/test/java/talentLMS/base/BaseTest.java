@@ -7,6 +7,7 @@ import talentLMS.entity.Course;
 import talentLMS.entity.User;
 import talentLMS.helper.BrowserManager;
 import talentLMS.helper.WebElementActions;
+import talentLMS.page.base.PageNavigator;
 import talentLMS.page.courses.AddCoursePage;
 import talentLMS.page.dashboard.modern.AdminDashboardModernPage;
 import talentLMS.page.dashboard.legacy.AdminDashboardPage;
@@ -14,6 +15,7 @@ import talentLMS.page.login.LoginPage;
 import talentLMS.page.categories.AddCategoryPage;
 import talentLMS.page.users.AddUserPage;
 import talentLMS.page.categories.DeleteCategoryPage;
+import talentLMS.page.users.UserTypesPage;
 import talentLMS.utils.randomEntityUtils.RandomCourseGenerator;
 import talentLMS.utils.randomEntityUtils.RandomUserGenerator;
 import org.openqa.selenium.WebDriver;
@@ -25,6 +27,7 @@ public abstract class BaseTest {
     public Actions actions;
     public WebElementActions webElementActions;
     public BrowserManager browserManager;
+    public PageNavigator pageNavigator;
 
     public LoginPage loginPage = new LoginPage();
     public AdminDashboardPage adminDashboardPage = new AdminDashboardPage();
@@ -33,6 +36,7 @@ public abstract class BaseTest {
     public AddCoursePage addCoursePage = new AddCoursePage();
     public DeleteCategoryPage deleteCategoryPage = new DeleteCategoryPage();
     public AddCategoryPage addCategoryPage = new AddCategoryPage();
+    public UserTypesPage userTypesPage = new UserTypesPage();
 
     public RandomUserGenerator randomUserGenerator = new RandomUserGenerator();
     public User randomUser = randomUserGenerator.randomUser();
@@ -45,6 +49,7 @@ public abstract class BaseTest {
         actions = new Actions(driver);
         webElementActions = new WebElementActions(driver, actions);
         browserManager = new BrowserManager();
+        pageNavigator = new PageNavigator();
     }
 
     @AfterSuite

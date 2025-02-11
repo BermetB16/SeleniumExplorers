@@ -1,13 +1,14 @@
 package talentLMS.helper;
 
 import org.openqa.selenium.WebDriver;
+import talentLMS.driver.Driver;
 
 public class BrowserManager {
 
     private WebDriver driver;
 
     public BrowserManager() {
-        this.driver = driver;
+        this.driver = Driver.getDriver();
     }
 
     public void openURL(String URL) {

@@ -1,29 +1,29 @@
 package talentLMS;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+import static org.testng.Assert.assertEquals;
+
+import talentLMS.base.BaseTest;
+import talentLMS.fileUtils.ConfigReader;
 import talentLMS.page.users.UserTypesPage;
+import talentLMS.utils.enums.Page;
 import talentLMS.utils.randomEntityUtils.RandomUserGenerator;
 
-import static org.junit.Assert.assertEquals;
+public class UserTypeTestPage extends BaseTest {
 
-public class UserTypeTestPage {
-    private WebDriver driver;
-    private UserTypesPage userTypesPage;
-
-    @Before
-    public void setUp() {
-        System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.get("https://your.talentlms.instance/admin/users");
-        userTypesPage = new UserTypesPage(driver);
+    @BeforeClass
+    public void authorization() {
+        browserManager.openURL("https://seleniumexplorers.talentlms.com/plus/login");
+        loginPage.doLogin(ConfigReader.getProperty("userName"), ConfigReader.getProperty("password"));
+        adminDashboardModernPage.goToLegacyInterface();
+        pageNavigator.switchToPage(Page.USER_TYPES);
     }
 
     @Test
@@ -34,7 +34,7 @@ public class UserTypeTestPage {
         // Проверяем, что значение действительно изменилось
         WebElement dropdownElement = driver.findElement(By.id("userTypeDropdown"));
         Select select = new Select(dropdownElement);
-        assertEquals(userType, select.getFirstSelectedOption().getText());
+        assertEquals(select.getFirstSelectedOption().getText(), userType);
     }
 
     @Test
@@ -47,10 +47,10 @@ public class UserTypeTestPage {
         WebElement firstNameElement = driver.findElement(By.id("firstName"));
 
         // Ждем изменения (если нужно, можно добавить WebDriverWait)
-        assertEquals(expectedFirstName, firstNameElement.getAttribute("value"));
+        assertEquals(firstNameElement.getAttribute("value"), expectedFirstName);
     }
 
-    @After
+    @AfterClass
     public void tearDown() {
         if (driver != null) {
             driver.quit();

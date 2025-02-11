@@ -9,9 +9,9 @@ import talentLMS.helper.WebElementActions;
 
 public class BasePage {
 
-    public WebDriver driver;
+    public static WebDriver driver;
     public Actions actions;
-    public WebElementActions webElementActions;
+    public static WebElementActions webElementActions;
     public BrowserManager browserManager;
 
     public BasePage() {
@@ -24,5 +24,16 @@ public class BasePage {
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
+    }
+
+    public void searchUser(String username) {
+    }
+
+    public void logout() {
+        
+    }
+
+    public void updateInfoOfUsers(String username, String s, String s1) {
+
     }
 }
