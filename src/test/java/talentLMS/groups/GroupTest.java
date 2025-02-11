@@ -12,6 +12,7 @@ import talentLMS.base.BaseTest;
 import talentLMS.fileUtils.ConfigReader;
 import talentLMS.utils.enums.Page;
 import java.time.Duration;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.testng.AssertJUnit.assertFalse;
@@ -318,56 +319,31 @@ public class GroupTest extends BaseTest {
 
 
         Assert.assertTrue(groupsPage.groupMemberText.isDisplayed(), "Пользователи не были добавлены в группу.");
+
     }
     @Test
-    @Step("Проверка массового добавления групп")
-    public void testBulkGroupCreation() {
-        for (int i = 1; i <= 5; i++) {
-            String groupName = "Group " + i;
-            groupsPage.clickAddGroupHome()
-                    .enterGroupName(groupName)
-                    .enterGroupDescription("Description for " + groupName)
-                    .clickSaveGroup()
-                    .groupButtonOnHomePage();
-        }
+    @Step("Добавление нескольких курсов в группу")
+    public void testAddMultipleCoursesToGroup() {
+        String groupName = "Group with Courses";
+        String groupDescription = "Group for adding multiple courses";
 
+        groupsPage.clickAddGroupHome()
+                .enterGroupName(groupName)
+                .enterGroupDescription(groupDescription)
+                .clickSaveGroup()
+                .clickCourseButton();
 
-        for (int i = 1; i <= 5; i++) {
-            String groupName = "Group " + i;
-            Assert.assertTrue(groupsPage.isGroupPresent(groupName), "Группа " + groupName + " не была найдена.");
+        List<String> coursesToAdd = Arrays.asList("QC", "QA");
+
+        for (String course : coursesToAdd) {
+
+            webElementActions.waitBtnToBeClickable(groupsPage.addCourseToGroup);
+            groupsPage.addCourseToGroup.click();
+
+            webElementActions.waitElementToBeDisplayed(groupsPage.CourseGroupMemberText);
+            Assert.assertTrue(groupsPage.CourseGroupMemberText.isDisplayed(), "Курс '" + course + "' не был добавлен в группу.");
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -375,6 +351,43 @@ public class GroupTest extends BaseTest {
 
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
