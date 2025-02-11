@@ -15,7 +15,10 @@ public class AddCategoryPage extends BasePage {
     AdminDashboardPage adminDashboardPage = new AdminDashboardPage();
 
     @FindBy(xpath = "//input[@placeholder=\"e.g. Accounting\"]")
-    public WebElement accountName;
+    public WebElement categoryName;
+
+    @FindBy(xpath = "//a[@class=\"btn btn-primary\" and text()=\"Add category\"]")
+    public WebElement addCategoryBtn;
 
     @FindBy(xpath = "//span[@class=\"select2-chosen\"]")
     public WebElement parentCategoryBtn;
@@ -29,31 +32,74 @@ public class AddCategoryPage extends BasePage {
     @FindBy(xpath = "//input[@name=\"submit_category\"]")
     public WebElement categorySubmitBtn;
 
-    public AddCategoryPage updateCategory(String username) {
+    @FindBy(xpath = "//a[@id=\"show-price\"]")
+    public WebElement categoryPriceBtn;
 
-        driver.findElement(By.xpath("//a[contains(text(),'" + username + "')]"));
+    @FindBy(xpath = "//input[@id=\"category-price\"]")
+    public WebElement categoryPrice;
+
+    @FindBy(xpath = "//span[@class='help-inline' and contains(text(), 'is required')]")
+    public WebElement errorNameRequired;
+
+    @FindBy(xpath = "//div[@class=\"toast-message\"]")
+    public WebElement successMessage;
+
+    @FindBy(xpath = "//div[contains(text(),\"Success! New category created.\")]")
+    public WebElement categoryCreatedMsg;
+
+    @FindBy(xpath = "//div[contains(text(),\"Category updated successfully\")]")
+    public WebElement categoryUpdatedMsg;
+
+    @FindBy(xpath = "//a[@href=\"https://seleniumexplorers.talentlms.com/category/index\"]")
+    public WebElement cancelCategoryBtn;
+
+    @FindBy(xpath = "//input[@value=\"Update category\"]")
+    public WebElement updateCategoryBtn;
+
+    public AddCategoryPage editCategory(String username) {
+        WebElement xpath = driver.findElement(By.xpath("//a[contains(text(),'" + username + "')]"));
         if (username != null) {
-            driver.findElement(By.xpath("//a[contains(text(),'" + username + "')]")).click();
+            xpath.click();
         } else {
             throw new NoSuchElementException("Категория с именем " + username + " не найдена.");
         }
 
-        this.accountName.clear();
-        webElementActions.sendKeys(this.accountName, RandomUserGenerator.randomFirstName());
+        this.categoryName.clear();
+        webElementActions.sendKeys(this.categoryName, RandomUserGenerator.randomFirstName());
         PageFactory.initElements(driver, deleteCategoryPage);
-        webElementActions.click(deleteCategoryPage.updateCategoryBtn);
+        webElementActions.click(updateCategoryBtn);
         return new AddCategoryPage();
-
     }
-//
-//    public AddCategoryPage addNewCategory(String accountName) {
-//
-//        AddCategoryPage addCategoryPage = new AddCategoryPage();
-//        webElementActions.click(adminDashboardPage.addCategoryBtn);
-//        webElementActions.sendKeys(addCategoryPage.accountName, accountName);
-//        webElementActions.click(addCategoryPage.parentCategoryBtn).click(iTCategory);
-//
-//        webElementActions.click(addCategoryPage.categorySubmitBtn);
-//        return addCategoryPage;
-//    }
+
+    public AddCategoryPage addNewCategory(String categoryName, int categoryPrice) {
+        webElementActions.click(addCategoryBtn)
+                .sendKeys(this.categoryName, categoryName)
+                .click(categoryPriceBtn)
+                .sendKeys(this.categoryPrice, String.valueOf(categoryPrice))
+                .click(parentCategoryBtn).click(iTCategory)
+                .click(categorySubmitBtn);
+        return new AddCategoryPage();
+    }
+
+    public AddCategoryPage cancelCategory(String categoryName, int categoryPrice) {
+        webElementActions.click(addCategoryBtn)
+                .sendKeys(this.categoryName, categoryName)
+                .click(categoryPriceBtn)
+                .sendKeys(this.categoryPrice, String.valueOf(categoryPrice))
+                .click(parentCategoryBtn).click(iTCategory)
+                .click(cancelCategoryBtn);
+        return new AddCategoryPage();
+    }
+
+    public String getCategorySuccessMessage() {
+        return webElementActions.getText(successMessage);
+    }
+
+    public boolean getCategorySuccessCreatedMessage() {
+        return webElementActions.isDisplayed(categoryCreatedMsg);
+    }
+
+    public boolean getCategorySuccessUpdatedMessage() {
+        return webElementActions.isDisplayed(categoryUpdatedMsg);
+    }
 }

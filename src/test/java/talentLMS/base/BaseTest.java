@@ -57,6 +57,8 @@ public abstract class BaseTest {
     public CourseInfoReportPage courseInfoReportPage = new CourseInfoReportPage();
     public ReportsPage reportsPage = new ReportsPage();
     public UserReportsPage userReportsPage = new UserReportsPage();
+    public PageNavigator pageNavigator = new PageNavigator();
+    public GroupsPage groupsPage = new GroupsPage();
 
 
     public RandomUserGenerator randomUserGenerator = new RandomUserGenerator();
