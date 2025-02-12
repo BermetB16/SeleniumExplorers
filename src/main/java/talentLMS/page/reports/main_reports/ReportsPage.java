@@ -18,7 +18,7 @@ public class ReportsPage extends BasePage {
     @FindBy(xpath = "//a[text()='Group reports']")
     public WebElement groupReports;
 
-    @FindBy(xpath = "//a[text()='Scorm reports']")
+    @FindBy(xpath = "//a[text()='SCORM reports']")
     public WebElement scormReports;
 
     @FindBy(xpath = "//a[text()='Test reports']")

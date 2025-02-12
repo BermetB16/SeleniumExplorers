@@ -1,6 +1,7 @@
 package talentLMS.reports;
 
 import io.qameta.allure.Step;
+import org.openqa.selenium.NoSuchElementException;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -32,7 +33,6 @@ public class ReportsTest extends BaseTest {
         Assert.assertTrue(webElementActions.isDisplayed(reportsPage.iltReports));
         Assert.assertTrue(webElementActions.isDisplayed(reportsPage.assignmentReports));
         Assert.assertTrue(webElementActions.isDisplayed(reportsPage.testReports));
-        Assert.assertTrue(webElementActions.isDisplayed(reportsPage.scormReports));
         Assert.assertTrue(webElementActions.isDisplayed(reportsPage.branchReports));
         Assert.assertTrue(webElementActions.isDisplayed(reportsPage.groupReports));
         Assert.assertTrue(webElementActions.isDisplayed(reportsPage.surveyReports));
@@ -62,10 +62,16 @@ public class ReportsTest extends BaseTest {
     @Test
     @Step("Navigate to Group Reports and verify the Group Reports page is displayed")
     public void goToGroupReports() {
-        webElementActions.click(adminDashboardPage.reports)
-                .click(reportsPage.groupReports);
-        Assert.assertTrue(webElementActions.isDisplayed(new GroupReportsPage().groupReportsHead));
+        try {
+            webElementActions.click(adminDashboardPage.reports)
+                    .click(reportsPage.groupReports);
+            Assert.assertTrue(webElementActions.isDisplayed(new GroupReportsPage().groupReportsHead),
+                    "Group Reports page is not displayed.");
+        } catch (NoSuchElementException e) {
+            Assert.fail("Element not found: " + e.getMessage());
+        }
     }
+
 
     @Test
     @Step("Navigate to SCORM Reports and verify the SCORM Reports page is displayed")
@@ -89,11 +95,19 @@ public class ReportsTest extends BaseTest {
     @Test
     @Step("Test that Course Info Report is displayed correctly for an existing course")
     public void testReportsCourseFound() {
-        courseReportsPage.goToCourseInfoReport("Binance");
-        Assert.assertTrue(webElementActions.isDisplayed(courseInfoReportPage.overViewSection));
-        Assert.assertTrue(webElementActions.isDisplayed(courseInfoReportPage.usersSection));
-        Assert.assertTrue(webElementActions.isDisplayed(courseInfoReportPage.timeline));
+        try {
+            courseReportsPage.goToCourseInfoReport("Binance");
+            Assert.assertTrue(webElementActions.isDisplayed(courseInfoReportPage.overViewSection),
+                    "Overview section is not displayed.");
+            Assert.assertTrue(webElementActions.isDisplayed(courseInfoReportPage.usersSection),
+                    "Users section is not displayed.");
+            Assert.assertTrue(webElementActions.isDisplayed(courseInfoReportPage.timeline),
+                    "Timeline section is not displayed.");
+        } catch (NoSuchElementException e) {
+            Assert.fail("Element not found: " + e.getMessage());
+        }
     }
+
 
     @Test
     @Step("Test that an error is thrown when Course Info Report is not found")

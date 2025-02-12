@@ -63,13 +63,23 @@ public class CoursesTest extends BaseTest {
 
     @Test(description = "Update an existing course and verify that the updated sections are displayed correctly")
     @Step("Update a course and verify that the course details are updated")
-    public void updateCourseTest(){
-        coursePage.updateCourse("Binance");
-        Assert.assertTrue(webElementActions.isDisplayed(editCoursePage.courseSection), "Course section not updated.");
-        Assert.assertTrue(webElementActions.isDisplayed(editCoursePage.usersSection), "Users section not visible.");
-        Assert.assertTrue(webElementActions.isDisplayed(profileUserPage.groupsSection), "Groups section not visible.");
-        Assert.assertTrue(webElementActions.isDisplayed(editCoursePage.courseUpdatedText), "Course updated confirmation text not displayed.");
+    public void updateCourseTest() {
+        try {
+            coursePage.updateCourse("Binance");
+
+            Assert.assertTrue(webElementActions.isDisplayed(editCoursePage.courseSection),
+                    "Course section not updated.");
+            Assert.assertTrue(webElementActions.isDisplayed(editCoursePage.usersSection),
+                    "Users section not visible.");
+            Assert.assertTrue(webElementActions.isDisplayed(profileUserPage.groupsSection),
+                    "Groups section not visible.");
+            Assert.assertTrue(webElementActions.isDisplayed(editCoursePage.courseUpdatedText),
+                    "Course updated confirmation text not displayed.");
+        } catch (NoSuchElementException e) {
+            Assert.fail("Element not found: " + e.getMessage());
+        }
     }
+
 
     @Test(description = "Attempt to update a course with an invalid name and expect a 'NoSuchElementException'")
     @Step("Try updating with an invalid course name and expect an exception")
