@@ -3,25 +3,20 @@ package talentLMS.reports;
 import io.qameta.allure.Step;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import talentLMS.base.BaseTest;
 import talentLMS.fileUtils.ConfigReader;
-import talentLMS.page.reports.assignment_reports.AssignmentReportsPage;
-import talentLMS.page.reports.branch_reports.BranchReportsPage;
 import talentLMS.page.reports.coursesReports.CourseReportsPage;
-import talentLMS.page.reports.custom_reports.CustomReportsPage;
 import talentLMS.page.reports.group_reports.GroupReportsPage;
-import talentLMS.page.reports.ilt_reports.ILTReportsPage;
 import talentLMS.page.reports.scorm_reports.ScormReportPage;
-import talentLMS.page.reports.survey_reports.SurveyReportsPage;
-import talentLMS.page.reports.test_reports.TestReportsPage;
 
 /**
  * author Nurdan
  */
 public class ReportsTest extends BaseTest {
 
-    @BeforeClass
+    @BeforeMethod
     public void setUp() {
         browserManager.openURL("https://seleniumexplorers.talentlms.com/plus/login");
         loginPage.doLogin(ConfigReader.getProperty("userName"), ConfigReader.getProperty("password"));

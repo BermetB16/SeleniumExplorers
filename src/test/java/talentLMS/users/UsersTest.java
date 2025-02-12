@@ -6,6 +6,7 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import talentLMS.base.BaseTest;
 import talentLMS.fileUtils.ConfigReader;
@@ -17,7 +18,7 @@ import java.util.Random;
  */
 public class UsersTest extends BaseTest {
 
-        @BeforeClass
+        @BeforeMethod
         @Step("Authorization")
         public void authorization() {
             browserManager.openURL("https://seleniumexplorers.talentlms.com/plus/login");
