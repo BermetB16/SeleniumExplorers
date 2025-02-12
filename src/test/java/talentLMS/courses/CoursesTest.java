@@ -5,7 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import talentLMS.base.BaseTest;
 import talentLMS.fileUtils.ConfigReader;
@@ -16,7 +16,7 @@ import static org.testng.Assert.assertThrows;
  */
 public class CoursesTest extends BaseTest {
 
-    @BeforeClass
+    @BeforeMethod
     @Step("authorization")
     public void setUp() {
         browserManager.openURL("https://seleniumexplorers.talentlms.com/plus/login");
