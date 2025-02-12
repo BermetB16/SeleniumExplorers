@@ -65,6 +65,8 @@ public abstract class BaseTest {
     public User randomUser = randomUserGenerator.randomUser();
     public RandomCourseGenerator randomCourseGenerator = new RandomCourseGenerator();
     public Course randomCourse = randomCourseGenerator.randomCourse();
+    public GroupsPage groupsPage = new GroupsPage();
+    public PageNavigator pageNavigator = new PageNavigator();
 
     @BeforeSuite
     public void beforeSuite() {

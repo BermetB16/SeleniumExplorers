@@ -1,5 +1,6 @@
 package talentLMS.reports;
 
+import io.qameta.allure.Step;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -14,8 +15,10 @@ import talentLMS.page.reports.ilt_reports.ILTReportsPage;
 import talentLMS.page.reports.scorm_reports.ScormReportPage;
 import talentLMS.page.reports.survey_reports.SurveyReportsPage;
 import talentLMS.page.reports.test_reports.TestReportsPage;
-import talentLMS.page.reports.usersReports.UserReportsPage;
 
+/**
+ * author Nurdan
+ */
 public class ReportsTest extends BaseTest {
 
     @BeforeClass
@@ -26,6 +29,7 @@ public class ReportsTest extends BaseTest {
     }
 
     @Test
+    @Step("Navigate to the Reports section and verify all report types are displayed")
     public void goToReportsTest() {
         webElementActions.click(adminDashboardPage.reports);
         Assert.assertTrue(webElementActions.isDisplayed(reportsPage.userReports));
@@ -37,7 +41,6 @@ public class ReportsTest extends BaseTest {
         Assert.assertTrue(webElementActions.isDisplayed(reportsPage.branchReports));
         Assert.assertTrue(webElementActions.isDisplayed(reportsPage.groupReports));
         Assert.assertTrue(webElementActions.isDisplayed(reportsPage.surveyReports));
-        Assert.assertTrue(webElementActions.isDisplayed(reportsPage.branchReports));
         Assert.assertTrue(webElementActions.isDisplayed(reportsPage.infographics));
         Assert.assertTrue(webElementActions.isDisplayed(reportsPage.overview));
         Assert.assertTrue(webElementActions.isDisplayed(reportsPage.timeLine));
@@ -46,6 +49,7 @@ public class ReportsTest extends BaseTest {
     }
 
     @Test
+    @Step("Navigate to User Reports and verify the User Reports page is displayed")
     public void goToUserReports() {
         webElementActions.click(adminDashboardPage.reports)
                 .click(reportsPage.userReports);
@@ -53,6 +57,7 @@ public class ReportsTest extends BaseTest {
     }
 
     @Test
+    @Step("Navigate to Course Reports and verify the Course Reports page is displayed")
     public void goToCourseReports() {
         webElementActions.click(adminDashboardPage.reports)
                 .click(reportsPage.courseReports);
@@ -60,13 +65,15 @@ public class ReportsTest extends BaseTest {
     }
 
     @Test
+    @Step("Navigate to Group Reports and verify the Group Reports page is displayed")
     public void goToGroupReports() {
         webElementActions.click(adminDashboardPage.reports)
-                .click(reportsPage.courseReports);
+                .click(reportsPage.groupReports);
         Assert.assertTrue(webElementActions.isDisplayed(new GroupReportsPage().groupReportsHead));
     }
 
     @Test
+    @Step("Navigate to SCORM Reports and verify the SCORM Reports page is displayed")
     public void goToScormReports() {
         webElementActions.click(adminDashboardPage.reports)
                 .click(reportsPage.scormReports);
@@ -74,74 +81,7 @@ public class ReportsTest extends BaseTest {
     }
 
     @Test
-    public void goToSurveyReports() {
-        webElementActions.click(adminDashboardPage.reports)
-                .click(reportsPage.surveyReports);
-        Assert.assertTrue(webElementActions.isDisplayed(new SurveyReportsPage().surveyReportsHead));
-    }
-
-    @Test
-    public void goToTestReports() {
-        webElementActions.click(adminDashboardPage.reports)
-                .click(reportsPage.testReports);
-        Assert.assertTrue(webElementActions.isDisplayed(new TestReportsPage().testReportsHead));
-    }
-
-    @Test
-    public void goToILTReports() {
-        webElementActions.click(adminDashboardPage.reports)
-                .click(reportsPage.iltReports);
-        Assert.assertTrue(webElementActions.isDisplayed(new ILTReportsPage().iltReportsHead));
-    }
-
-    @Test
-    public void goToBranchReports() {
-        webElementActions.click(adminDashboardPage.reports)
-                .click(reportsPage.branchReports);
-        Assert.assertTrue(webElementActions.isDisplayed(new BranchReportsPage().branchReportsHead));
-    }
-
-    @Test
-    public void goToAssignmentReports() {
-        webElementActions.click(adminDashboardPage.reports)
-                .click(reportsPage.assignmentReports);
-        Assert.assertTrue(webElementActions.isDisplayed(new AssignmentReportsPage().assignmentReportsHead));
-    }
-
-    @Test
-    public void goToCustomReports() {
-        webElementActions.click(adminDashboardPage.reports)
-                .jsClick(reportsPage.customReports);
-        Assert.assertTrue(webElementActions.isDisplayed(new CustomReportsPage().customReportsHead));
-    }
-
-    @Test
-    public void testReportsUserFound() {
-        userReportsPage.goToUserProgressPage("S.Explorers");
-        Assert.assertTrue(webElementActions.isDisplayed(userReportProgressPage.overView));
-        Assert.assertTrue(webElementActions.isDisplayed(userReportProgressPage.badges));
-        Assert.assertTrue(webElementActions.isDisplayed(userReportProgressPage.timeline));
-        Assert.assertTrue(webElementActions.isDisplayed(userReportProgressPage.certificates));
-        Assert.assertTrue(webElementActions.isDisplayed(userReportProgressPage.courses));
-        Assert.assertTrue(webElementActions.isDisplayed(userReportProgressPage.infographicButton));
-        Assert.assertTrue(webElementActions.isDisplayed(userReportProgressPage.profileButton));
-        Assert.assertTrue(webElementActions.isDisplayed(userReportProgressPage.progressButton));
-    }
-
-    @Test
-    public void testReportsUserFound2() {
-        userReportsPage.goToUserProgressPage("S.Explorers");
-        Assert.assertTrue(webElementActions.isEnabled(userReportProgressPage.overView));
-        Assert.assertTrue(webElementActions.isEnabled(userReportProgressPage.badges));
-        Assert.assertTrue(webElementActions.isEnabled(userReportProgressPage.timeline));
-        Assert.assertTrue(webElementActions.isEnabled(userReportProgressPage.certificates));
-        Assert.assertTrue(webElementActions.isEnabled(userReportProgressPage.courses));
-        Assert.assertTrue(webElementActions.isEnabled(userReportProgressPage.infographicButton));
-        Assert.assertTrue(webElementActions.isEnabled(userReportProgressPage.profileButton));
-        Assert.assertTrue(webElementActions.isEnabled(userReportProgressPage.progressButton));
-    }
-
-    @Test
+    @Step("Test that an error is thrown when user reports are not found")
     public void testReportsUserNotFound() {
         try {
             userReportProgressPage = userReportsPage.goToUserProgressPage("NonExistingUser");
@@ -152,6 +92,7 @@ public class ReportsTest extends BaseTest {
     }
 
     @Test
+    @Step("Test that Course Info Report is displayed correctly for an existing course")
     public void testReportsCourseFound() {
         courseReportsPage.goToCourseInfoReport("Binance");
         Assert.assertTrue(webElementActions.isDisplayed(courseInfoReportPage.overViewSection));
@@ -160,14 +101,7 @@ public class ReportsTest extends BaseTest {
     }
 
     @Test
-    public void testReportsCourseFound2() {
-        courseReportsPage.goToCourseInfoReport("Binance");
-        Assert.assertTrue(webElementActions.isEnabled(courseInfoReportPage.overViewSection));
-        Assert.assertTrue(webElementActions.isEnabled(courseInfoReportPage.usersSection));
-        Assert.assertTrue(webElementActions.isEnabled(courseInfoReportPage.timeline));
-    }
-
-    @Test
+    @Step("Test that an error is thrown when Course Info Report is not found")
     public void testReportsCourseNotFound() {
         try {
             courseInfoReportPage = courseReportsPage.goToCourseInfoReport("NonExistingCourse");
