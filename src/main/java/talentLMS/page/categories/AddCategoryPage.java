@@ -11,7 +11,6 @@ import talentLMS.utils.randomEntityUtils.RandomUserGenerator;
 
 public class AddCategoryPage extends BasePage {
 
-    DeleteCategoryPage deleteCategoryPage = new DeleteCategoryPage();
     AdminDashboardPage adminDashboardPage = new AdminDashboardPage();
 
     @FindBy(xpath = "//input[@placeholder=\"e.g. Accounting\"]")
@@ -56,6 +55,12 @@ public class AddCategoryPage extends BasePage {
     @FindBy(xpath = "//input[@value=\"Update category\"]")
     public WebElement updateCategoryBtn;
 
+    @FindBy(xpath = "//span[@class=\"help-inline\" and text()=\"This is not a valid 'Price'\"]")
+    public WebElement notValidPriceMsg;
+
+    @FindBy(xpath = "//a[@class=\"btn dropdown-toggle tl-bold-link\"]")
+    public WebElement dropDownCategoryBtn;
+
     public AddCategoryPage editCategory(String username) {
         WebElement xpath = driver.findElement(By.xpath("//a[contains(text(),'" + username + "')]"));
         if (username != null) {
@@ -66,26 +71,33 @@ public class AddCategoryPage extends BasePage {
 
         this.categoryName.clear();
         webElementActions.sendKeys(this.categoryName, RandomUserGenerator.randomFirstName());
-        PageFactory.initElements(driver, deleteCategoryPage);
         webElementActions.click(updateCategoryBtn);
         return new AddCategoryPage();
     }
 
-    public AddCategoryPage addNewCategory(String categoryName, int categoryPrice) {
+    public AddCategoryPage addNewCategory(String categoryName, String categoryPrice) {
         webElementActions.click(addCategoryBtn)
                 .sendKeys(this.categoryName, categoryName)
                 .click(categoryPriceBtn)
-                .sendKeys(this.categoryPrice, String.valueOf(categoryPrice))
+                .sendKeys(this.categoryPrice, categoryPrice)
                 .click(parentCategoryBtn).click(iTCategory)
                 .click(categorySubmitBtn);
         return new AddCategoryPage();
     }
 
-    public AddCategoryPage cancelCategory(String categoryName, int categoryPrice) {
+    public AddCategoryPage addNewCategory(String categoryName) {
+        webElementActions.click(addCategoryBtn)
+                .sendKeys(this.categoryName, categoryName)
+                .click(parentCategoryBtn).click(iTCategory)
+                .click(categorySubmitBtn);
+        return new AddCategoryPage();
+    }
+
+    public AddCategoryPage cancelCategory(String categoryName, String categoryPrice) {
         webElementActions.click(addCategoryBtn)
                 .sendKeys(this.categoryName, categoryName)
                 .click(categoryPriceBtn)
-                .sendKeys(this.categoryPrice, String.valueOf(categoryPrice))
+                .sendKeys(this.categoryPrice, categoryPrice)
                 .click(parentCategoryBtn).click(iTCategory)
                 .click(cancelCategoryBtn);
         return new AddCategoryPage();
