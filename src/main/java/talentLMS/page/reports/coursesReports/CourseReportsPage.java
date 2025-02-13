@@ -24,7 +24,7 @@ public class CourseReportsPage extends BasePage {
                     .click(courseElement);
             return new CourseInfoReportPage();
         } catch (NoSuchElementException e) {
-            throw new RuntimeException("Course with name '" + course + "' not found in the reports table.", e);
+            throw new NoSuchElementException("Course with name '" + course + "' not found in the reports table.", e);
         }
     }
 
