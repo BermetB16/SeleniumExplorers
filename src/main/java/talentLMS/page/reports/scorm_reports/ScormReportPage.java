@@ -6,6 +6,6 @@ import talentLMS.page.base.BasePage;
 
 public class ScormReportPage extends BasePage {
 
-    @FindBy(xpath = "//div[@class='tl-title tl-ellipsis'][contains(text(),'Scorm reports')]")
+    @FindBy(xpath = "//div[@class='tl-title tl-ellipsis'][contains(text(),'SCORM reports')]")
     public WebElement scormReportsHead;
 }
