@@ -9,6 +9,7 @@ import talentLMS.entity.User;
 import talentLMS.helper.BrowserManager;
 import talentLMS.helper.WebElementActions;
 import talentLMS.page.base.PageNavigator;
+import talentLMS.page.branches.BranchesPage;
 import talentLMS.page.courses.AddCoursePage;
 import talentLMS.page.courses.CoursePage;
 import talentLMS.page.courses.EditCoursePage;
@@ -59,6 +60,7 @@ public abstract class BaseTest {
     public UserReportsPage userReportsPage = new UserReportsPage();
     public PageNavigator pageNavigator = new PageNavigator();
     public GroupsPage groupsPage = new GroupsPage();
+    public BranchesPage branchesPage = new BranchesPage();
 
 
     public RandomUserGenerator randomUserGenerator = new RandomUserGenerator();
