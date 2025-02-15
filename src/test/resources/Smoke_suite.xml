@@ -2,14 +2,17 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Smoke Suite">
     <test verbose="2" preserve-order="true" name="C:/Users/talga/IdeaProjects/SeleniumExplorers">
-        <classes>
-           <class name="talentLMS.dashboard.AdminDashboardTest"> </class>
-            <class name="talentLMS.login.LoginTest"> </class>
-            <class name="talentLMS.courses.CoursesTest"></class>
-            <class name="talentLMS.users.UsersTest"></class>
-            <class name="talentLMS.groups.GroupTest"></class>
-            <class name="talentLMS.category.CategoryTest"></class>
-            <class name="talentLMS.reports.ReportsTest"></class>
-        </classes>
+
+<!--        <groups>-->
+<!--            <run>-->
+<!--                <include name="Smoke"/>-->
+<!--            </run>-->
+<!--        </groups>-->
+<!--        <classes>-->
+<!--            <class name="talentLMS.groups.GroupTest"></class>-->
+<!--        </classes>-->
+
+
+
     </test>
 </suite>

@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import talentLMS.base.BaseTest;
 import talentLMS.fileUtils.ConfigReader;
@@ -18,7 +19,7 @@ import java.util.List;
 import static org.testng.AssertJUnit.assertFalse;
 public class GroupTest extends BaseTest {
 
-    @BeforeClass
+    @BeforeMethod
     public void setUp() {
 
 
@@ -99,7 +100,7 @@ public class GroupTest extends BaseTest {
         assertFalse("ГGroup is not deleted", isGroupPresent);
     }
 
-    @Test
+    @Test(groups = "Regression")
     @Step("Создание группы с пустыми полями")
     public void testCreateGroupWithEmptyFields() {
 
@@ -126,7 +127,7 @@ public class GroupTest extends BaseTest {
         Assert.assertTrue(errorMessage.getText().contains("'Name' is required"), "Ошибка не содержит ожидаемого текста.");
     }
 
-    @Test
+    @Test(groups = "Regression")
     @Step("Создание группы без описания")
     public void testCreateGroupWithoutDescription() {
 
@@ -144,7 +145,7 @@ public class GroupTest extends BaseTest {
 
         Assert.assertTrue(groupsPage.getSuccessMessage().contains("Success! New group created."));
     }
-    @Test
+    @Test(groups = "Regression")
     @Step("Отмена создания группы")
     public void testCancelCreateGroup() {
 
